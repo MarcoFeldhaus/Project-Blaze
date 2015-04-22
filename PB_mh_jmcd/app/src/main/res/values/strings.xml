@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">PB_mh_jmcd</string>
+
+    <string name="title_section1">Home</string>
+    <string name="title_section2">About Us</string>
+    <string name="title_section3">Settings</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="username">Username:</string>
+    <string name="emailaddress">Email Address:</string>
+    <string name="password">Password:</string>
+    <string name="conpassword">Confirm Password:</string>
+
+    <string name="btn_login">LOG IN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_to_register">SIGN UP</string>
+    <!-- <string name="btn_to_register">Not a member? Sign up here to join!</string> -->
+    <!--<string name="btn_to_login">A member already? Login here!</string> -->
+    <string name="btn_to_login">BACK</string>
+</resources>
