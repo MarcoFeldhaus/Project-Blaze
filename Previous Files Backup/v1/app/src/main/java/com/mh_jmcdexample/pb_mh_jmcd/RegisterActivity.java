@@ -1,63 +1,47 @@
 package com.mh_jmcdexample.pb_mh_jmcd;
 
-/**
- * Created by Michael on 10/04/15.
- */
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
+public class RegisterActivity extends Activity {
 
-public class LoginActivity extends Activity {
 
-
-    private Button btnLogin;
-    private Button btnToRegister;
+    //private Button btnLogin;
+    Button btnToLogin;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
 
-
-        btnToRegister = (Button) findViewById(R.id.btn_To_Register);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-
+        // btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnToLogin = (Button) findViewById(R.id.btn_To_Login);
 
         //Disables Keyboard on Activity startup
         //this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 
-
-
-        //Intent to Login, Navigation Fragments
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        //Intent to Login Screen
+        btnToLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent i = new Intent(LoginActivity.this,
-                        MainHomeFragActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
-
-
-        //Intent to Register Screen
-        btnToRegister.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent i = new Intent(LoginActivity.this,
-                        RegisterActivity.class);
+                Intent i = new Intent(RegisterActivity.this,
+                        LoginActivity.class);
                 startActivity(i);
                 finish();
             }
         });
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,4 +65,3 @@ public class LoginActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 }
-

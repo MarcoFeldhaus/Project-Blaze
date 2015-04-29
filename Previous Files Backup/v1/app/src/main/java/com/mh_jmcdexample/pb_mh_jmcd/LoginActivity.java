@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 
@@ -41,7 +42,7 @@ public class LoginActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(LoginActivity.this,
-                        MainHomeFragActivity.class);
+                        Main_HomeFragActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -58,6 +59,16 @@ public class LoginActivity extends Activity {
             }
         });
     }
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

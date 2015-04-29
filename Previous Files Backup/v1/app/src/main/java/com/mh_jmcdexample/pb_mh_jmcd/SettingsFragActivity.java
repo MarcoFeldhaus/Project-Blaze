@@ -35,7 +35,7 @@ public class SettingsFragActivity extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((MainHomeFragActivity) activity).onSectionAttached(getArguments().getInt(
+        ((Main_HomeFragActivity) activity).onSectionAttached(getArguments().getInt(
                 ARG_SECTION_NUMBER));
     }
 
