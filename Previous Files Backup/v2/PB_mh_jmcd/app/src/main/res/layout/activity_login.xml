@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+
+    >
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:orientation="vertical"
+        android:background="@android:drawable/dialog_holo_light_frame"
+        >
+
+        <ImageView
+            android:id="@+id/app_icon_imgview"
+            android:layout_width="144px"
+            android:layout_height="144px"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:text="@string/emailaddress"/>
+
+
+        <EditText
+            android:id="@+id/txtbox_email_address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:padding="15dp"
+            android:singleLine="true"
+
+            />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:text="@string/password"/>
+        <EditText
+            android:id="@+id/txtbox_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:padding="15dp"
+            android:singleLine="true"
+
+            />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginBottom="40dp">
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:padding="15dp"
+                    android:text="@string/btn_login"
+                    android:layout_weight="0.50" />
+
+                <Button
+                    android:id="@+id/btn_To_Register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/btn_to_register"
+
+                    android:padding="15dp"
+                    android:layout_weight="0.50" />
+                    </LinearLayout>
+        <!--android:textSize="15dp"-->
+        </LinearLayout>
+</LinearLayout>

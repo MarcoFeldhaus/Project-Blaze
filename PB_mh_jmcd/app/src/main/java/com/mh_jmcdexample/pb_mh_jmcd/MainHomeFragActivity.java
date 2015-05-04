@@ -1,8 +1,13 @@
 package com.mh_jmcdexample.pb_mh_jmcd;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -157,7 +162,7 @@ public class MainHomeFragActivity extends ActionBarActivity
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment implements GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+    public static class PlaceholderFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         public static PlaceholderFragment newInstance(int sectionNumber) {
@@ -211,13 +216,6 @@ public class MainHomeFragActivity extends ActionBarActivity
          * Represents a geographical location.
          */
         protected Location mCurrentLocation;
-        // UI Widgets.
-        //protected Button mStartUpdatesButton;
-        //protected Button mStopUpdatesButton;
-        protected TextView mLastUpdateTimeTextView;
-        protected TextView mLatitudeTextView;
-        protected TextView mLongitudeTextView;
-
         /**
          * Tracks the status of the location updates request. Value changes when the user presses the
          * Start Updates and Stop Updates buttons.
@@ -229,6 +227,8 @@ public class MainHomeFragActivity extends ActionBarActivity
          */
         protected String mLastUpdateTime;
         private TextView status, role, method;
+
+
 
     /*
      * End of Google Update Location Code - Available at (Website) - Modified to fit App requirements
@@ -273,20 +273,30 @@ public class MainHomeFragActivity extends ActionBarActivity
             // API.
             buildGoogleApiClient();
 
+
+
+
+
+
         }
 
         @Override
         public void onResume() {
             super.onResume();
+
+
             if (map == null) {
                 map = fragment.getMap();
-                Toast.makeText(getActivity(), "Map was successfully created with AsyncTask", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Map was successfully created with AsyncTask", Toast.LENGTH_SHORT).show();
                 // map.setOnMarkerClickListener(this);
 
                 if (map != null) {
                     //ProjectBlazeMapSetup();
-                    new pindropretrieve().execute();
-                    new pindropupload().execute();
+                    //new pindropretrieve().execute();
+                    //Change to where user location updates for real-time update
+
+
+                    //new pindropupload().execute();
                     map.setMyLocationEnabled(true);
                     map.getUiSettings().setMyLocationButtonEnabled(true);
                     map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
@@ -308,18 +318,17 @@ public class MainHomeFragActivity extends ActionBarActivity
 
         }
 
-        public boolean onMarkerClick(Marker marker) {
-            Toast.makeText(getActivity(), "Pindrop Clicked: " + marker.getTitle(), Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
+        //check for Network Connection.
 
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
             ((MainHomeFragActivity) activity).onSectionAttached(getArguments().getInt(
                     ARG_SECTION_NUMBER));
+
         }
+
+
 
 
         /**
@@ -350,7 +359,7 @@ public class MainHomeFragActivity extends ActionBarActivity
                 if (savedInstanceState.keySet().contains(LAST_UPDATED_TIME_STRING_KEY)) {
                     mLastUpdateTime = savedInstanceState.getString(LAST_UPDATED_TIME_STRING_KEY);
                 }
-                updateUI();
+
             }
         }
 
@@ -398,35 +407,6 @@ public class MainHomeFragActivity extends ActionBarActivity
         }
 
         /**
-         * Handles the Start Updates button and requests start of location updates. Does nothing if
-         * updates have already been requested.
-         */
-
-
-    /*
-    public void startUpdatesButtonHandler(View view) {
-        if (!mRequestingLocationUpdates) {
-            mRequestingLocationUpdates = true;
-            //setButtonsEnabledState();
-            startLocationUpdates();
-        }
-    }
-
-    /**
-     * Handles the Stop Updates button, and requests removal of location updates. Does nothing if
-     * updates were not previously requested.
-     */
-    /*
-    public void stopUpdatesButtonHandler(View view) {
-        if (mRequestingLocationUpdates) {
-            mRequestingLocationUpdates = false;
-            //setButtonsEnabledState();
-            stopLocationUpdates();
-        }
-    }
-    */
-
-        /**
          * Requests location updates from the FusedLocationApi.
          */
         protected void startLocationUpdates() {
@@ -436,35 +416,6 @@ public class MainHomeFragActivity extends ActionBarActivity
                     mGoogleApiClient, mLocationRequest, this);
         }
 
-        /**
-         * Ensures that only one button is enabled at any time. The Start Updates button is enabled
-         * if the user is not requesting location updates. The Stop Updates button is enabled if the
-         * user is requesting location updates.
-         */
-
-    /*
-    private void setButtonsEnabledState() {
-        if (mRequestingLocationUpdates) {
-            mStartUpdatesButton.setEnabled(false);
-            mStopUpdatesButton.setEnabled(true);
-        } else {
-            mStartUpdatesButton.setEnabled(true);
-            mStopUpdatesButton.setEnabled(false);
-        }
-    }
-    */
-
-
-        /**
-         * Updates the latitude, the longitude, and the last location time in the UI.
-         */
-        private void updateUI() {
-            if (mCurrentLocation != null) {
-                //mLatitudeTextView.setText(String.valueOf(mCurrentLocation.getLatitude()));
-                //mLongitudeTextView.setText(String.valueOf(mCurrentLocation.getLongitude()));
-                //mLastUpdateTimeTextView.setText(mLastUpdateTime);
-            }
-        }
 
         /**
          * Removes location updates from the FusedLocationApi.
@@ -521,7 +472,9 @@ public class MainHomeFragActivity extends ActionBarActivity
             if (mCurrentLocation == null) {
                 mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                 mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
-                updateUI();
+                //Toast.makeText(getActivity(), "Unable to retrieve current location", Toast.LENGTH_SHORT).show();
+
+
             }
 
             // If the user presses the Start Updates button before GoogleApiClient connects, we set
@@ -532,6 +485,7 @@ public class MainHomeFragActivity extends ActionBarActivity
             }
         }
 
+
         /**
          * Callback that fires when the location changes.
          */
@@ -539,19 +493,28 @@ public class MainHomeFragActivity extends ActionBarActivity
         public void onLocationChanged(Location location) {
             mCurrentLocation = location;
             mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
-            updateUI();
-            Toast.makeText(getActivity(), "User Update successful", Toast.LENGTH_SHORT).show();
 
+            Toast.makeText(getActivity(), "Location update", Toast.LENGTH_SHORT).show();
 
+            new pindropretrieve().execute();
+            mapClear();
             u_latlngPost();
 
         }
+
+        public void mapClear (){
+            if (map != null){
+                map.clear();
+            }
+        }
+
 
         @Override
         public void onConnectionSuspended(int cause) {
             // The connection to Google Play services was lost for some reason. We call connect() to
             // attempt to re-establish the connection.
             Log.i(TAG, "Connection suspended");
+
             mGoogleApiClient.connect();
         }
 
@@ -560,6 +523,7 @@ public class MainHomeFragActivity extends ActionBarActivity
             // Refer to the javadoc for ConnectionResult to see what error codes might be returned in
             // onConnectionFailed.
             Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
+
         }
 
 
@@ -582,8 +546,8 @@ public class MainHomeFragActivity extends ActionBarActivity
             String u_lat = Float.toString((float) latField);
             String u_lng = Float.toString((float) lngField);
 
-            new pindropupload().execute(u_lat, u_lng);
-
+            //new pindropupload().execute(u_lat, u_lng);
+            new pindropretrieve().execute();
         }
 
         private class pindropupload extends AsyncTask<String, Void, String> {
@@ -638,7 +602,7 @@ public class MainHomeFragActivity extends ActionBarActivity
             //this.statusField.setText("User Update Successful");
             //this.roleField.setText(result);
             //Toast.makeText(this, "Users Location was Successfully Uploaded to Database", Toast.LENGTH_SHORT).show();
-            Toast.makeText(getActivity(), "Map was successfully created with AsyncTask", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "Map was successfully created with AsyncTask", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -646,7 +610,7 @@ public class MainHomeFragActivity extends ActionBarActivity
 
             @Override
             protected String doInBackground(String... params) {
-                String HTTP_URL = "http://10.0.0.11/markerTest/index.php";
+                String HTTP_URL = "http://10.0.0.6/markerTest/index.php";
                 URL url = null;
                 HttpURLConnection connect = null;
                 StringBuilder json = new StringBuilder();
@@ -685,7 +649,7 @@ public class MainHomeFragActivity extends ActionBarActivity
                                         jsonObj.getJSONArray("latlng").getDouble(0),
                                         jsonObj.getJSONArray("latlng").getDouble(1)
                                 ))
-                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_pindrop)));
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.vectorpindrop)));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
