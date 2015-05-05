@@ -4,6 +4,7 @@
     <string name="title_section1">Home</string>
     <string name="title_section2">About Us</string>
     <string name="title_section3">Settings</string>
+    <string name="title_section4">Logout</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -14,15 +15,14 @@
     <string name="action_settings">Settings</string>
 
 
-    <string name="username">Username:</string>
-    <string name="emailaddress">Email Address:</string>
-    <string name="password">Password:</string>
-    <string name="conpassword">Confirm Password:</string>
-
-    <string name="btn_login">LOG IN</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
-    <string name="btn_to_register">SIGN UP</string>
-    <!-- <string name="btn_to_register">Not a member? Sign up here to join!</string> -->
-    <!--<string name="btn_to_login">A member already? Login here!</string> -->
-    <string name="btn_to_login">BACK</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already registered! Login Me.</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Fullname</string>
 </resources>

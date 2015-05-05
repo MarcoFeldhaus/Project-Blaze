@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 
@@ -101,15 +102,19 @@ public class AboutFragActivity extends Fragment {
         text1.setText(strUsername);
         text2.setText(updateType);
         text3.setText(updates);
+
+
+
+
     }
-/*
+
     @Override
     public void onResume() {
         super.onResume();
 
 
     }
-
+/*
     public void twitterPost () {
         // This piece of code is to allow users to access Twitter to post tweets about our application with a default present text
         // This solution was from a user called Jonik at http://stackoverflow.com/questions/2077008/android-intent-for-twitter-application

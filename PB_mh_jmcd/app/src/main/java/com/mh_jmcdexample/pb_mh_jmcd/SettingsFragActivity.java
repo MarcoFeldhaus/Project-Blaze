@@ -5,15 +5,14 @@ package com.mh_jmcdexample.pb_mh_jmcd;
  */
 import android.app.Activity;
 
-import android.app.FragmentTransaction;
+
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceGroup;
-import android.preference.PreferenceScreen;
+
 import android.support.v4.app.Fragment;
+
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,10 +59,26 @@ public class SettingsFragActivity extends Fragment {
 
             //Fragment newFragment = InfoFragment.newInstance(0);
 
-            getActivity().getFragmentManager().beginTransaction()
-                    .replace(R.id.container, new MyPreferenceFragment())
-                    .commit();
+
+
+
+           // getActivity().getFragmentManager().beginTransaction()
+             //       .add(R.id.container, new MyPreferenceFragment())
+               //     .commit();
+
+            //Fragment newFragment = new MyPreferenceFragment();
+
+
+
+
+
+
+
         }
+
+
+
+
        // getFragmentManager().beginTransaction()
        // getActivity().getFragmentManager().beginTransaction()
 
@@ -75,6 +90,8 @@ public class SettingsFragActivity extends Fragment {
 
 
     }
+
+    /*
 
     public class MyPreferenceFragment extends PreferenceFragment {
         public MyPreferenceFragment(){}
@@ -89,8 +106,8 @@ public class SettingsFragActivity extends Fragment {
 
 
     }
+*/
 
-
-
+    //getActivity().getFragmentManager().beginTransaction().remove(SettingsFragActivity.class).commit();
 
 }

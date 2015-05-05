@@ -2,6 +2,7 @@ package com.mh_jmcdexample.pb_mh_jmcd;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.net.ConnectivityManager;
@@ -34,6 +35,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mh_jmcdexample.pb_mh_jmcd.helper.SQLiteHandler;
+import com.mh_jmcdexample.pb_mh_jmcd.helper.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +68,13 @@ public class MainHomeFragActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
+
+
+    private SQLiteHandler db;
+    private SessionManager session;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +88,19 @@ public class MainHomeFragActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // session manager
+        session = new SessionManager(getApplicationContext());
+
+       // if (!session.isLoggedIn()) {
+       //     logoutUser();
+       // }
+
+
+
     }
 
     @Override
@@ -103,6 +126,19 @@ public class MainHomeFragActivity extends ActionBarActivity
                 fragmentManager.beginTransaction().replace(R.id.container,
                         SettingsFragActivity.newInstance(position + 1)).commit();
                 break;
+            case 4:
+                session.setLogin(false);
+
+                //db.deleteUsers();
+
+                //db.close();
+
+                // Launching the login activity
+                Intent intent = new Intent(MainHomeFragActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+
+                break;
 
 
         }
@@ -118,6 +154,9 @@ public class MainHomeFragActivity extends ActionBarActivity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
                 break;
         }
     }
@@ -152,7 +191,10 @@ public class MainHomeFragActivity extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent i = new Intent(this, com.mh_jmcdexample.pb_mh_jmcd.MyPreferenceActivity.class);
+            startActivity(i);
             return true;
+
         }
 
         return super.onOptionsItemSelected(item);
