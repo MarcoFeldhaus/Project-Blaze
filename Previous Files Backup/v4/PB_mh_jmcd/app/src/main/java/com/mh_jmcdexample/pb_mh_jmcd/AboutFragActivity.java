@@ -27,13 +27,7 @@ import android.widget.TextView;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.List;
-
-
-import com.mh_jmcdexample.pb_mh_jmcd.helper.SessionManager;
-import com.mh_jmcdexample.pb_mh_jmcd.helper.SQLiteHandler;
-
 
 
 public class AboutFragActivity extends Fragment {
@@ -41,9 +35,6 @@ public class AboutFragActivity extends Fragment {
 
     private ImageView btnTwitter;
     private ImageView btnFacebook;
-
-    private SQLiteHandler db;
-    private SessionManager session;
 
 
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -96,9 +87,6 @@ public class AboutFragActivity extends Fragment {
         TextView text2 = (TextView) getView().findViewById(R.id.text2);
         TextView text3 = (TextView) getView().findViewById(R.id.text3);
 
-        TextView text4 = (TextView) getView().findViewById(R.id.text4);
-        TextView text5 = (TextView) getView().findViewById(R.id.text5);
-
 
 
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -118,32 +106,6 @@ public class AboutFragActivity extends Fragment {
 
 
 
-        // SqLite database handler
-        db = new SQLiteHandler(getActivity());
-
-        // session manager
-        session = new SessionManager(getActivity());
-
-        if (!session.isLoggedIn()) {
-            //logoutUser();
-        }
-
-        // Fetching user details from sqlite
-        HashMap<String, String> user = db.getUserDetails();
-
-        String name = user.get("name");
-        String email = user.get("email");
-
-        text4.setText(name);
-        text5.setText(email);
-
-
-
-
-
-
-
-
     }
 
     @Override
@@ -152,10 +114,6 @@ public class AboutFragActivity extends Fragment {
 
 
     }
-
-
-
-
 /*
     public void twitterPost () {
         // This piece of code is to allow users to access Twitter to post tweets about our application with a default present text

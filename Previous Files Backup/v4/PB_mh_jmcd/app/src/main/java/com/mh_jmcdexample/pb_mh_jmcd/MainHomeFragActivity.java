@@ -53,7 +53,6 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.HashMap;
 
 
 public class MainHomeFragActivity extends ActionBarActivity
@@ -99,13 +98,7 @@ public class MainHomeFragActivity extends ActionBarActivity
        // if (!session.isLoggedIn()) {
        //     logoutUser();
        // }
-        // SqLite database handler
-        //db = new SQLiteHandler(getApplicationContext());
-        // Fetching user details from sqlite
-        HashMap<String, String> user = db.getUserDetails();
 
-        String name = user.get("name");
-        String email = user.get("email");
 
 
     }
@@ -136,7 +129,7 @@ public class MainHomeFragActivity extends ActionBarActivity
             case 4:
                 session.setLogin(false);
 
-                db.deleteUsers();
+                //db.deleteUsers();
 
                 //db.close();
 
@@ -275,7 +268,7 @@ public class MainHomeFragActivity extends ActionBarActivity
          * Time when the location was updated represented as a String.
          */
         protected String mLastUpdateTime;
-        //private TextView status, role, method;
+        private TextView status, role, method;
 
 
 
@@ -283,7 +276,7 @@ public class MainHomeFragActivity extends ActionBarActivity
      * End of Google Update Location Code - Available at (Website) - Modified to fit App requirements
 
      */
-    private SQLiteHandler db;
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -303,7 +296,7 @@ public class MainHomeFragActivity extends ActionBarActivity
             super.onActivityCreated(savedInstanceState);
             FragmentManager fm = getChildFragmentManager();
 
-            //new pindropretrieve().execute();
+            new pindropretrieve().execute();
 
 
             if (fragment == null) {
@@ -323,13 +316,7 @@ public class MainHomeFragActivity extends ActionBarActivity
             buildGoogleApiClient();
 
 
-            // SqLite database handler
-            db = new SQLiteHandler(getActivity());
-            // Fetching user details from sqlite
-            //HashMap<String, String> user = db.getUserDetails();
 
-            //String name = user.get("name");
-            //String email = user.get("email");
 
 
 
@@ -551,11 +538,7 @@ public class MainHomeFragActivity extends ActionBarActivity
 
             Toast.makeText(getActivity(), "Location update", Toast.LENGTH_SHORT).show();
 
-
-
-            //new pindropretrieve().execute();
-
-
+            new pindropretrieve().execute();
             mapClear();
             u_latlngPost();
 
@@ -602,18 +585,11 @@ public class MainHomeFragActivity extends ActionBarActivity
             double latField = mCurrentLocation.getLatitude();
             double lngField = mCurrentLocation.getLongitude();
 
-
-
             String u_lat = Float.toString((float) latField);
             String u_lng = Float.toString((float) lngField);
 
-            HashMap<String, String> user = db.getUserDetails();
-
-            String name = user.get("name");
-            //String email = user.get("email");
-
-            new pindropupload().execute(name,u_lat, u_lng);
-            //new pindropretrieve().execute();
+            //new pindropupload().execute(u_lat, u_lng);
+            new pindropretrieve().execute();
         }
 
         private class pindropupload extends AsyncTask<String, Void, String> {
@@ -626,14 +602,10 @@ public class MainHomeFragActivity extends ActionBarActivity
             @Override
             protected String doInBackground(String... arg0) {
                 try {
-                    String name = (String) arg0[0];
-                    //String email = (String) arg0[1];
-                    String u_lat = (String) arg0[1];
-                    String u_lng = (String) arg0[2];
-                    String link = "http://10.0.0.3/pindropUpload/index.php";
-                    String data = URLEncoder.encode("name", "UTF-8")
-                            + "=" + URLEncoder.encode(name, "UTF-8");
-                    data += "&" + URLEncoder.encode("u_lat", "UTF-8")
+                    String u_lat = (String) arg0[0];
+                    String u_lng = (String) arg0[1];
+                    String link = "http://10.0.0.8/updateUserLoc/index.php";
+                    String data = URLEncoder.encode("u_lat", "UTF-8")
                             + "=" + URLEncoder.encode(u_lat, "UTF-8");
                     data += "&" + URLEncoder.encode("u_lng", "UTF-8")
                             + "=" + URLEncoder.encode(u_lng, "UTF-8");
@@ -680,7 +652,7 @@ public class MainHomeFragActivity extends ActionBarActivity
 
             @Override
             protected String doInBackground(String... params) {
-                String HTTP_URL = "http://10.0.0.6/pindropDownload/index.php";
+                String HTTP_URL = "http://10.0.0.6/markerTest/index.php";
                 URL url = null;
                 HttpURLConnection connect = null;
                 StringBuilder json = new StringBuilder();
