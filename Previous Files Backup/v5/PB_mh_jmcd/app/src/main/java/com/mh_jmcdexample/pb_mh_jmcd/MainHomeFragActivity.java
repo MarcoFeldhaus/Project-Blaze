@@ -200,7 +200,6 @@ public class MainHomeFragActivity extends ActionBarActivity
         if (id == R.id.action_settings) {
             Intent i = new Intent(this, com.mh_jmcdexample.pb_mh_jmcd.MyPreferenceActivity.class);
             startActivity(i);
-            //onBackPressed();
             return true;
 
         }
@@ -374,7 +373,7 @@ public class MainHomeFragActivity extends ActionBarActivity
 
         }
 
-        //check for Network Connection.PUT HERE
+        //check for Network Connection.
 
         @Override
         public void onAttach(Activity activity) {
@@ -631,8 +630,7 @@ public class MainHomeFragActivity extends ActionBarActivity
                     //String email = (String) arg0[1];
                     String u_lat = (String) arg0[1];
                     String u_lng = (String) arg0[2];
-                    //String link = "http://10.0.0.3/pindropUpload/index.php";
-                    String link = "http://www.projectblaze.site88.net//pindropUpload/index.php";
+                    String link = "http://10.0.0.3/pindropUpload/index.php";
                     String data = URLEncoder.encode("name", "UTF-8")
                             + "=" + URLEncoder.encode(name, "UTF-8");
                     data += "&" + URLEncoder.encode("u_lat", "UTF-8")
