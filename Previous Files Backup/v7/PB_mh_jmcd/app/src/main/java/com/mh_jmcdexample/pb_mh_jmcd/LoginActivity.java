@@ -140,7 +140,7 @@ public class LoginActivity extends Activity {
                     if (!error) {
                         // user successfully logged in
 
-           //Solution from Charles T to display user details upon second login
+                        //Solution from Charles T to display user details upon second login
                         String uid = jObj.getString("uid");
                         JSONObject user = jObj.getJSONObject("user");
                         String name = user.getString("name");
@@ -148,7 +148,7 @@ public class LoginActivity extends Activity {
                         String created_at = user.getString("created_at");
                         //Insert row into the tble
                         db.addUser(name,email,uid,created_at);
-           //End of Charles T solution
+                        //End of Charles T solution
 
 
 

@@ -615,7 +615,7 @@ public class MainHomeFragActivity extends ActionBarActivity
             String email = user.get("email");
 
             new pindropupload().execute(name,u_lat, u_lng);
-            new pindropretrieve().execute(name);
+            new pindropretrieve().execute();
         }
 
         private class pindropupload extends AsyncTask<String, Void, String> {
@@ -686,7 +686,7 @@ public class MainHomeFragActivity extends ActionBarActivity
             }
 
             @Override
- /*           protected String doInBackground(String... params) {
+            protected String doInBackground(String... params) {
                 //String HTTP_URL = "http://10.0.0.7/pindropDownload/index.php";
                 String HTTP_URL = "http://www.projectblaze.site88.net/pindropDownload/index.php";
                 URL url = null;
@@ -713,47 +713,6 @@ public class MainHomeFragActivity extends ActionBarActivity
                 return json.toString();
                 //return null;
             }
-*/
-
-            protected String doInBackground(String... arg0) {
-                try {
-                    String name = (String) arg0[0];
-
-                    //String HTTP_URL = "http://www.projectblaze.site88.net/pindropDownload/index.php";
-                    //String link = "http://10.0.0.3/pindropUpload/index.php";
-                    String link = "http://www.projectblaze.site88.net/pindropDownload/index.php";
-                    String data = URLEncoder.encode("name", "UTF-8")
-                            + "=" + URLEncoder.encode(name, "UTF-8");
-
-                    URL url = new URL(link);
-                    URLConnection conn = url.openConnection();
-                    conn.setDoOutput(true);
-                    OutputStreamWriter wr = new OutputStreamWriter
-                            (conn.getOutputStream());
-                    wr.write(data);
-                    wr.flush();
-                    BufferedReader reader = new BufferedReader
-                            (new InputStreamReader(conn.getInputStream()));
-                    StringBuilder json = new StringBuilder();
-                    String line = null;
-                    // Read Server Response
-
-                    while ((line = reader.readLine()) != null) {
-                       json.append(line);
-                        break;
-                    }
-                    return json.toString();
-
-                } catch (Exception e) {
-                    return new String("Exception: " + e.getMessage());
-
-                }
-
-            }
-
-
-
-
 
             protected void onPostExecute(String json) {
                 try {

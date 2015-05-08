@@ -1,0 +1,250 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context=".MainActivity$PlaceholderFragment"
+    >
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text4"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/text5"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/text6"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <!-- <TextView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="40dp"
+         android:text="About Us will go here"
+         android:textSize="50px"
+         android:id="@+id/textView"
+         android:gravity="top|center
+     <Button
+         android:id="@+id/btnTwitter"
+         android:layout_width="200px"
+         android:layout_height="200px"
+         android:layout_marginTop="80dp"
+         android:background="@drawable/twitter_img"/>
+
+
+     <Button
+         android:id="@+id/btnFacebook"
+         android:layout_width="200px"
+         android:layout_height="200px"
+         android:layout_marginTop="200dp"
+         android:background="@drawable/facebook_img"/>-->
+
+    <TableLayout
+        android:layout_width="600px"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="*"
+        android:stretchColumns="*"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        >
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/imgIcon"
+                android:layout_width="144px"
+                android:layout_height="144px"
+                android:src="@mipmap/ic_launcher"
+                android:layout_gravity="center"
+
+                />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            >
+
+            <TextView
+                android:text="Project Blaze"
+                android:textSize="30px"
+                android:id="@+id/textView1"
+
+                android:layout_gravity="center_horizontal"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            >
+
+            <TextView
+                android:text="Version 1.0"
+                android:textSize="20px"
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                android:text="Developed by:"
+                android:textSize="20px"
+                android:id="@+id/textView3"
+                android:layout_gravity="center_horizontal"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="1dp"
+            >
+
+            <TextView
+                android:text="Michael Horn"
+                android:textSize="20px"
+                android:id="@+id/textView4"
+                android:layout_gravity="center_horizontal"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="1dp"
+            >
+
+            <TextView
+                android:text="Jordan McDonough"
+                android:textSize="20px"
+                android:id="@+id/textView5"
+                android:layout_gravity="center_horizontal"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            >
+
+            <Button
+                android:text="Acknowledgments"
+                android:textSize="20px"
+                android:id="@+id/btn_ack"
+                android:layout_gravity="center_horizontal"
+                />
+        </TableRow>
+
+
+
+    </TableLayout>
+
+
+    <TableLayout
+        android:layout_width="325px"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="*"
+        android:stretchColumns="*"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal">
+
+
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="10dp"
+
+            >
+
+            <TextView
+                android:text="Share"
+                android:textSize="30px"
+                android:id="@+id/textView7"
+                android:layout_gravity="center_horizontal"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+
+            >
+
+            <ImageView
+                android:id="@+id/btnTwitter"
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:src="@drawable/twitter_button"
+                />
+
+            <TextView
+                android:text="or"
+                android:textSize="20px"
+                android:id="@+id/textView6"
+                android:paddingTop="15dp"
+
+                android:layout_gravity="center_horizontal"
+                />
+            <ImageView
+                android:id="@+id/btnFacebook"
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:src="@drawable/facebook_button"
+                />
+
+
+
+
+        </TableRow>
+
+
+
+    </TableLayout>
+
+
+</LinearLayout>
