@@ -1,0 +1,13 @@
+<resources>
+    <string-array name="listArray">
+        <item>1 Minute</item>
+        <item>10 Minutes</item>
+        <item>30 Minutes</item>
+    </string-array>
+
+    <string-array name="listValues">
+        <item>60000</item>
+        <item>600000</item>
+        <item>1800000</item>
+    </string-array>
+</resources>

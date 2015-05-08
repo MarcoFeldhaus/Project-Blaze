@@ -46,7 +46,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -231,8 +230,8 @@ public class MainHomeFragActivity extends ActionBarActivity
         private GoogleMap map;
         private SupportMapFragment fragment;
 
-        //private static final String HTTP_URL = "http://10.0.0.5/markerTest/index.php";
-        //private static final String LOG_TAG = "Project Blaze Log Tag";
+        private static final String HTTP_URL = "http://10.0.0.5/markerTest/index.php";
+        private static final String LOG_TAG = "Project Blaze Log Tag";
 
     /*
      * Start of Google Update Location Code - Available at (Website) - Modified to fit App requirements
@@ -612,10 +611,10 @@ public class MainHomeFragActivity extends ActionBarActivity
             HashMap<String, String> user = db.getUserDetails();
 
             String name = user.get("name");
-            String email = user.get("email");
+            //String email = user.get("email");
 
             new pindropupload().execute(name,u_lat, u_lng);
-            new pindropretrieve().execute();
+            //new pindropretrieve().execute();
         }
 
         private class pindropupload extends AsyncTask<String, Void, String> {
@@ -633,7 +632,7 @@ public class MainHomeFragActivity extends ActionBarActivity
                     String u_lat = (String) arg0[1];
                     String u_lng = (String) arg0[2];
                     //String link = "http://10.0.0.3/pindropUpload/index.php";
-                    String link = "http://www.projectblaze.site88.net/pindropUpload/index.php";
+                    String link = "http://www.projectblaze.site88.net//pindropUpload/index.php";
                     String data = URLEncoder.encode("name", "UTF-8")
                             + "=" + URLEncoder.encode(name, "UTF-8");
                     data += "&" + URLEncoder.encode("u_lat", "UTF-8")
@@ -681,14 +680,9 @@ public class MainHomeFragActivity extends ActionBarActivity
 
         private class pindropretrieve extends AsyncTask<String, Void, String> {
 
-            protected void onPreExecute() {
-
-            }
-
             @Override
             protected String doInBackground(String... params) {
-                //String HTTP_URL = "http://10.0.0.7/pindropDownload/index.php";
-                String HTTP_URL = "http://www.projectblaze.site88.net/pindropDownload/index.php";
+                String HTTP_URL = "http://10.0.0.6/pindropDownload/index.php";
                 URL url = null;
                 HttpURLConnection connect = null;
                 StringBuilder json = new StringBuilder();
@@ -717,14 +711,12 @@ public class MainHomeFragActivity extends ActionBarActivity
             protected void onPostExecute(String json) {
                 try {
                     JSONArray jsonArray = new JSONArray(json);
-                    Log.d(TAG, "Json response :" + jsonArray);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObj = jsonArray.getJSONObject(i);
-                        //Log.d(TAG, "Json response :" + jsonArray.getJSONObject(i));
                         //Add markers from json
                         map.addMarker(new MarkerOptions()
-                                .title(jsonObj.getString("name"))
-                                .snippet(jsonObj.getString("u_lastUpdated"))
+                                .title(jsonObj.getString("marker_title"))
+                                .snippet(jsonObj.getString("snippet"))
                                 .position(new LatLng(
                                         jsonObj.getJSONArray("latlng").getDouble(0),
                                         jsonObj.getJSONArray("latlng").getDouble(1)
@@ -739,7 +731,6 @@ public class MainHomeFragActivity extends ActionBarActivity
 
 
         }
-
 
         /**
          * Copyright 2014 Google Inc. All Rights Reserved.
