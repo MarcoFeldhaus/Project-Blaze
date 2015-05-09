@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="actionbar_background">#05A8F4</color>
-    <!--<color name="actionbar_background">#209687</color>
-    <color name="actionbar_background">#763fd0</color>-->
+    <color name="actionbar_background">#209687</color>
+    <!--<color name="actionbar_background">#763fd0</color>-->
 
 
         <color name="bg_login">#26ae90</color>

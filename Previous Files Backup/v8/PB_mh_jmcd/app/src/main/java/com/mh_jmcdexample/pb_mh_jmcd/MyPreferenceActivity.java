@@ -17,6 +17,17 @@ public class MyPreferenceActivity extends ActionBarActivity
 {
 
 
+
+   /* public MyPreferenceActivity() {}
+
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        //getSupportActionBar().setHomeButtonEnabled(true);
+        getFragmentManager().beginTransaction()
+                .replace(android.R.id.content, new MyPreferenceFragment()).commit();
+
+    }*/
+
     public class MyPreferenceFragment extends PreferenceFragment {
 
         @Override
@@ -35,7 +46,7 @@ public class MyPreferenceActivity extends ActionBarActivity
     protected void onCreate(final Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.fragment_settings);
+        setContentView(R.layout.fragment_settings);
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new MyPreferenceFragment()).commit();
         //getSupportActionBar().setHomeButtonEnabled(true);

@@ -119,10 +119,6 @@ public class MainHomeFragActivity extends ActionBarActivity
         //      .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
         //    .commit();
 
-//Solution derived from Chengwens soluton to display other fragments from navigating from drawer
-//Available at
-//http://stackoverflow.com/questions/24006181/android-how-to-change-fragments-in-the-navigation-drawer
-
         switch (position + 1) {
             case 1:
                 fragmentManager.beginTransaction().replace(R.id.container,
@@ -138,8 +134,6 @@ public class MainHomeFragActivity extends ActionBarActivity
                 fragmentManager.beginTransaction().replace(R.id.container,
                         SettingsFragActivity.newInstance(position + 1)).commit();
                 break;
-//End of Chengwens Solution
-
             case 4:
                 session.setLogin(false);
 
@@ -250,18 +244,13 @@ public class MainHomeFragActivity extends ActionBarActivity
         /**
          * The desired interval for location updates. Inexact. Updates may be more or less frequent.
          */
-
-
-
-        //public static final long UPDATE_INTERVAL_IN_MILLISECONDS = 20000;
-
-
-
+        public static final long UPDATE_INTERVAL_IN_MILLISECONDS = 20000;
         /**
          * The fastest rate for active location updates. Exact. Updates will never be more frequent
          * than this value.
          */
-        //public static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS / 2;
+        public static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS =
+                UPDATE_INTERVAL_IN_MILLISECONDS / 2;
         // Keys for storing activity state in the Bundle.
         protected final static String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";
         protected final static String LOCATION_KEY = "location-key";
@@ -458,44 +447,7 @@ public class MainHomeFragActivity extends ActionBarActivity
          * These settings are appropriate for mapping applications that show real-time location
          * updates.
          */
-
-        private void updateWithPreference() {
-            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            String strUsername = SP.getString("username","NA");
-            String updateType = SP.getString("updateType", "1");
-            boolean bAppUpdates = SP.getBoolean("applicationUpdates",false);
-
-            String updates = Boolean.toString(bAppUpdates);
-
-            //long l = Long.parseLong(updateType);
-            TextView text1 = (TextView) getView().findViewById(R.id.text1);
-            TextView text2 = (TextView) getView().findViewById(R.id.text2);
-            TextView text3 = (TextView) getView().findViewById(R.id.text3);
-
-            text1.setText(strUsername);
-            text2.setText(updateType);
-            text3.setText(updates);
-
-        }
-
-
-
-
         protected void createLocationRequest() {
-
-            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-            String updateType = SP.getString("updateType","60000");
-
-            final long UPDATE_INTERVAL_IN_MILLISECONDS = Long.parseLong(updateType);
-
-                //final long UPDATE_INTERVAL_IN_MILLISECONDS = 20000;
-
-            final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS;
-
-
-
-
             mLocationRequest = new LocationRequest();
 
             // Sets the desired interval for active location updates. This interval is
@@ -798,6 +750,10 @@ public class MainHomeFragActivity extends ActionBarActivity
                 }
 
             }
+
+
+
+
 
             protected void onPostExecute(String json) {
                 try {

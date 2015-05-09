@@ -13,7 +13,7 @@
         android:title="Update Intervals"
         android:summary="Select the update interval time for your location."
         android:key="updateType"
-        android:defaultValue="60000"
+        android:defaultValue="1"
         android:entries="@array/listArray"
         android:entryValues="@array/listValues" />
     <CheckBoxPreference

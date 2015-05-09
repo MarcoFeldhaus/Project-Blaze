@@ -36,7 +36,7 @@ import com.mh_jmcdexample.pb_mh_jmcd.helper.SQLiteHandler;
 
 
 
-public class AboutFragActivity extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener{
+public class AboutFragActivity extends Fragment {
 
 
     private ImageView btnTwitter;
@@ -92,9 +92,9 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
 
        //Settings Test, Move to Main HomeFragPage, context Error, changed to get Activity()
 
-       // TextView text1 = (TextView) getView().findViewById(R.id.text1);
-        //TextView text2 = (TextView) getView().findViewById(R.id.text2);
-        //TextView text3 = (TextView) getView().findViewById(R.id.text3);
+        TextView text1 = (TextView) getView().findViewById(R.id.text1);
+        TextView text2 = (TextView) getView().findViewById(R.id.text2);
+        TextView text3 = (TextView) getView().findViewById(R.id.text3);
 
         TextView text4 = (TextView) getView().findViewById(R.id.text4);
         TextView text5 = (TextView) getView().findViewById(R.id.text5);
@@ -102,13 +102,20 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
 
 
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        SP.registerOnSharedPreferenceChangeListener(this);
 
-        updateWithPreference();
+        String strUsername = SP.getString("username","NA");
+        String updateType = SP.getString("updateType","1");
+        boolean bAppUpdates = SP.getBoolean("applicationUpdates",false);
 
-        //text1.setText(strUsername);
-        //text2.setText(updateType);
-        //text3.setText(updates);
+        String updates = Boolean.toString(bAppUpdates);
+
+
+
+        text1.setText(strUsername);
+        text2.setText(updateType);
+        text3.setText(updates);
+
+
 
 
         // SqLite database handler
@@ -130,24 +137,12 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
         text4.setText(name);
         text5.setText(email);
 
-    }
 
-    private void updateWithPreference() {
-        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String strUsername = SP.getString("username","NA");
-        String updateType = SP.getString("updateType", "1");
-        boolean bAppUpdates = SP.getBoolean("applicationUpdates",false);
 
-        String updates = Boolean.toString(bAppUpdates);
 
-        //long l = Long.parseLong(updateType);
-        TextView text1 = (TextView) getView().findViewById(R.id.text1);
-        TextView text2 = (TextView) getView().findViewById(R.id.text2);
-        TextView text3 = (TextView) getView().findViewById(R.id.text3);
 
-        text1.setText(strUsername);
-        text2.setText(updateType);
-        text3.setText(updates);
+
+
 
     }
 
@@ -159,6 +154,32 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
     }
 
 
+
+
+/*
+    public void twitterPost () {
+        // This piece of code is to allow users to access Twitter to post tweets about our application with a default present text
+        // This solution was from a user called Jonik at http://stackoverflow.com/questions/2077008/android-intent-for-twitter-application
+
+
+        String tweetUrl =
+                String.format("https://twitter.com/intent/tweet?text=%s&url=%s",
+                        urlEncode("Project Blaze - Hey Guys"), urlEncode(""));
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(tweetUrl));
+
+        // Narrow down to official Twitter app, if available:
+        List<ResolveInfo> matches = getActivity().getPackageManager().queryIntentActivities(intent, 0);
+        for (ResolveInfo info : matches) {
+            if (info.activityInfo.packageName.toLowerCase().startsWith("com.twitter")) {
+                intent.setPackage(info.activityInfo.packageName);
+            }
+        }
+
+        startActivity(intent);
+
+    }
+*/
     public void twitterPost () {
 
         // This piece of code is to allow users to access Twitter to post tweets about our application with a default present text
@@ -254,10 +275,7 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
     }
 
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        updateWithPreference();
-    }
+
 }
 
 
