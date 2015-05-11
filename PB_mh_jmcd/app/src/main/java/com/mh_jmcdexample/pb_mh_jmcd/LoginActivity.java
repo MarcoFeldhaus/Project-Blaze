@@ -59,7 +59,7 @@ public class LoginActivity extends Activity {
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
+        btnLinkToRegister = (Button) findViewById(R.id.btnToRegister);
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
@@ -93,10 +93,26 @@ public class LoginActivity extends Activity {
                     checkLogin(email, password);
                 } else {
                     // Prompt user to enter credentials
-                    Toast.makeText(getApplicationContext(),
-                            "Please enter the credentials!", Toast.LENGTH_LONG)
-                            .show();
+                    //Toast.makeText(getApplicationContext(),
+                      //      "Please enter the credentials!", Toast.LENGTH_LONG)
+                        //    .show();
+
+                    if (email.trim().length() <= 0) {
+                        Toast.makeText(getApplicationContext(),
+                                "Please enter your Email Address", Toast.LENGTH_LONG)
+                                .show();
+                    }
+                    if (password.trim().length() <= 0) {
+                        Toast.makeText(getApplicationContext(),
+                                "Please enter your Password", Toast.LENGTH_LONG)
+                                .show();
+                    }
+
+
                 }
+
+
+
             }
 
         });
@@ -121,7 +137,7 @@ public class LoginActivity extends Activity {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
-        pDialog.setMessage("Logging in ...");
+        pDialog.setMessage("Logging in User");
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -177,8 +193,10 @@ public class LoginActivity extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error.getMessage());
+                //Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
                 Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                        "Could not complete your request, Please try again later.", Toast.LENGTH_LONG)
+                        .show();
                 hideDialog();
             }
         }) {

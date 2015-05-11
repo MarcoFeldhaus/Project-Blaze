@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -487,8 +488,10 @@ public class MainHomeFragActivity extends ActionBarActivity
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
-            createLocationRequest();
             setUpMapPreference();
+            pindropSound();
+            createLocationRequest();
+
 
         }
 
@@ -527,12 +530,35 @@ public class MainHomeFragActivity extends ActionBarActivity
 
         }
 
+        public void pindropSound(){
+            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            boolean bAppUpdates = SP.getBoolean("appSoundUpdates",false);
+            String updates = Boolean.toString(bAppUpdates);
+
+
+
+            MediaPlayer mp = MediaPlayer.create(getActivity(),R.raw.echo_affirm);
+            mp.setLooping(false);
+            //mp.start();
+
+            if (updates.equals("true")){
+
+                //MediaPlayer.create(getActivity(),R.raw.echo_affirm);
+                //mp.setLooping(false);
+                mp.start();
+                //mp.reset();
+                //mp.release();
+            }
+
+
+        }
+
 
         protected void createLocationRequest() {
 
             SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-            String updateType = SP.getString("updateType","60000");
+            String updateType = SP.getString("updateInterval","60000");
 
             final long UPDATE_INTERVAL_IN_MILLISECONDS = Long.parseLong(updateType);
 
@@ -646,7 +672,7 @@ public class MainHomeFragActivity extends ActionBarActivity
             mCurrentLocation = location;
             mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
 
-            Toast.makeText(getActivity(), "Location update", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "Location update", Toast.LENGTH_SHORT).show();
 
 
 
@@ -654,7 +680,7 @@ public class MainHomeFragActivity extends ActionBarActivity
 
 
             mapClear();
-            u_latlngPost();
+            pindropExecute();
 
         }
 
@@ -693,8 +719,26 @@ public class MainHomeFragActivity extends ActionBarActivity
             super.onSaveInstanceState(savedInstanceState);
         }
 
+        /**
+         * Copyright 2014 Google Inc. All Rights Reserved.
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         * http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */
 
-        public void u_latlngPost() {
+
+
+
+        public void pindropExecute() {
 
             double latField = mCurrentLocation.getLatitude();
             double lngField = mCurrentLocation.getLongitude();
@@ -769,15 +813,16 @@ public class MainHomeFragActivity extends ActionBarActivity
 
             }
 
-        }
 
-        //@Override
-        protected void onPostExecute() {
-            //this.statusField.setText("User Update Successful");
-            //this.roleField.setText(result);
-            //Toast.makeText(this, "Users Location was Successfully Uploaded to Database", Toast.LENGTH_SHORT).show();
-            //Toast.makeText(getActivity(), "Map was successfully created with AsyncTask", Toast.LENGTH_SHORT).show();
 
+            protected void onPostExecute(String sb) {
+
+                //this.statusField.setText("User Update Successful");
+                //this.roleField.setText(result);
+                //Toast.makeText(this, "Users Location was Successfully Uploaded to Database", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Map was successfully created with AsyncTask", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "User Location Update", Toast.LENGTH_SHORT).show();
+            }
         }
 
         private class pindropretrieve extends AsyncTask<String, Void, String> {
@@ -873,27 +918,16 @@ public class MainHomeFragActivity extends ActionBarActivity
                     e.printStackTrace();
                 }
 
+                Toast.makeText(getActivity(), "Pindrop Location Update", Toast.LENGTH_SHORT).show();
+                pindropSound();
+
             }
 
 
         }
 
 
-        /**
-         * Copyright 2014 Google Inc. All Rights Reserved.
-         *
-         * Licensed under the Apache License, Version 2.0 (the "License");
-         * you may not use this file except in compliance with the License.
-         * You may obtain a copy of the License at
-         *
-         * http://www.apache.org/licenses/LICENSE-2.0
-         *
-         * Unless required by applicable law or agreed to in writing, software
-         * distributed under the License is distributed on an "AS IS" BASIS,
-         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-         * See the License for the specific language governing permissions and
-         * limitations under the License.
-         */
+
 
 
     }

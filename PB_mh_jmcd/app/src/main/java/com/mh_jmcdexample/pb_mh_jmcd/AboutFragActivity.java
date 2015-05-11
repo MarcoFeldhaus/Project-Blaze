@@ -41,6 +41,7 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
 
     private Button btnTwitter;
     private Button btnFacebook;
+    private Button btnAcknowledge;
 
     private SQLiteHandler db;
     private SessionManager session;
@@ -74,6 +75,7 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
 
         btnTwitter = (Button) getView().findViewById(R.id.btn_twitter);
         btnFacebook = (Button) getView().findViewById(R.id.btn_facebook);
+        btnAcknowledge = (Button) getView().findViewById(R.id.btn_ack);
 
 
         btnTwitter.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +87,12 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
         btnFacebook.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 facebookPost();
+            }
+        });
+
+        btnAcknowledge.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                acknowledgements();
             }
         });
 
@@ -130,9 +138,9 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
     private void updateWithPreference() {
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String strUsername = SP.getString("username","NA");
-        String updateType = SP.getString("updateType", "60000");
+        String updateType = SP.getString("updateInterval", "60000");
         String mapType = SP.getString("mapType", "1");
-        boolean bAppUpdates = SP.getBoolean("applicationUpdates",false);
+        boolean bAppUpdates = SP.getBoolean("appSoundUpdates",false);
         String updates = Boolean.toString(bAppUpdates);
 
         //long l = Long.parseLong(updateType);
@@ -224,6 +232,13 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
         }
 
         startActivity(intent);
+
+    }
+
+    public void acknowledgements () {
+
+        Intent i = new Intent(getActivity(), AcknowledgeActivity.class);
+        startActivity(i);
 
     }
 

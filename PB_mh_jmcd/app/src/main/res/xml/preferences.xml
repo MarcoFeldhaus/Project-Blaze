@@ -12,7 +12,7 @@
     <ListPreference
         android:title="Update Intervals"
         android:summary="Select the update interval time for your location."
-        android:key="updateType"
+        android:key="updateInterval"
         android:defaultValue="60000"
         android:entries="@array/listArray"
         android:entryValues="@array/listValues" />
@@ -27,6 +27,6 @@
         android:title="Sound"
         android:defaultValue="false"
         android:summary="If this option is selected, a sound will ping on your location update."
-        android:key="applicationUpdates" />
+        android:key="appSoundUpdates" />
     </PreferenceCategory>
 </PreferenceScreen>

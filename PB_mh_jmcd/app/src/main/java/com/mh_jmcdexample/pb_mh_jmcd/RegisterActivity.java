@@ -40,7 +40,7 @@ public class RegisterActivity extends Activity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
     private Button btnRegister;
     private Button btnLinkToLogin;
-    private EditText inputFullName;
+    private EditText inputUserName;
     private EditText inputEmail;
     private EditText inputPassword;
     private ProgressDialog pDialog;
@@ -53,11 +53,11 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        inputFullName = (EditText) findViewById(R.id.name);
+        inputUserName = (EditText) findViewById(R.id.username);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         btnRegister = (Button) findViewById(R.id.btnRegister);
-        btnLinkToLogin = (Button) findViewById(R.id.btnLinkToLoginScreen);
+        btnLinkToLogin = (Button) findViewById(R.id.btnToLogin);
         //checkBox = (CheckBox) findViewById(R.id.checkbox);
 
         // Progress dialog
@@ -66,9 +66,6 @@ public class RegisterActivity extends Activity {
 
         // Session manager
         session = new SessionManager(getApplicationContext());
-
-        // SQLite database handler
-
 
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
@@ -82,7 +79,7 @@ public class RegisterActivity extends Activity {
         // Register Button Click event
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String name = inputFullName.getText().toString();
+                String name = inputUserName.getText().toString();
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
 
@@ -94,17 +91,17 @@ public class RegisterActivity extends Activity {
                     //        .show();
                     if (name.isEmpty()) {
                         Toast.makeText(getApplicationContext(),
-                                "Please enter your name", Toast.LENGTH_LONG)
+                                "Please enter your Username", Toast.LENGTH_LONG)
                                 .show();
                     }
                     if (email.isEmpty()) {
                         Toast.makeText(getApplicationContext(),
-                                "Please enter your email address", Toast.LENGTH_LONG)
+                                "Please enter your Email Address", Toast.LENGTH_LONG)
                                 .show();
                     }
                     if (password.isEmpty()) {
                         Toast.makeText(getApplicationContext(),
-                                "Please enter your password", Toast.LENGTH_LONG)
+                                "Please enter your Password", Toast.LENGTH_LONG)
                                 .show();
                     }
                     // if (checkBox.isChecked()) {
@@ -116,7 +113,7 @@ public class RegisterActivity extends Activity {
 
         });
 
-        // Link to Login Screen
+
         btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
@@ -138,7 +135,7 @@ public class RegisterActivity extends Activity {
         // Tag used to cancel the request
         String tag_string_req = "req_register";
 
-        pDialog.setMessage("Registering ...");
+        pDialog.setMessage("Registering User");
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -153,10 +150,10 @@ public class RegisterActivity extends Activity {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
                     if (!error) {
-                        // User successfully stored in MySQL
 
-
-                        // Launch login activity
+                        Toast.makeText(getApplicationContext(),
+                                "User successfully registered.", Toast.LENGTH_LONG)
+                                .show();
                         Intent intent = new Intent(
                                 RegisterActivity.this,
                                 LoginActivity.class);
@@ -180,8 +177,10 @@ public class RegisterActivity extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Registration Error: " + error.getMessage());
+                //Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
                 Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                        "Could not complete your request, Please try again later.", Toast.LENGTH_LONG)
+                        .show();
                 hideDialog();
             }
         }) {

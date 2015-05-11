@@ -64,7 +64,12 @@
 
         <activity
             android:name="com.mh_jmcdexample.pb_mh_jmcd.MyPreferenceActivity"
-            android:label="Preferences"></activity>
+            android:label="@string/settings"></activity>
+
+        <activity
+            android:name=".AcknowledgeActivity"
+            android:label="@string/acknowledge"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

@@ -6,28 +6,19 @@
     <color name="gradient_start">#50616161</color>
     <color name="fragment_background">#ffefefef</color>
 
-        <color name="bg_login">#26ae90</color>
-        <color name="bg_register">#2e3237</color>
-        <color name="bg_main">#428bca</color>
-        <color name="white">#ffffff</color>
-        <color name="input_login">#222222</color>
-        <color name="input_login_hint">#999999</color>
-        <color name="input_register">#888888</color>
-        <color name="input_register_bg">#3b4148</color>
-        <color name="input_register_hint">#5e6266</color>
-        <color name="btn_login">#26ae90</color>
-        <color name="btn_login_bg">#eceef1</color>
-        <color name="lbl_name">#333333</color>
-        <color name="btn_logut_bg">#ff6861</color>
 
 
 
+
+    <color name="text_login_register">#209687</color>
+    <color name="btn_logreg_focus">#209687</color>
+    <color name="btn_logreg_press">#ff18665b</color>
     <color name="btn_ack_focus">#209687</color>
     <color name="btn_ack_press">#ff18665b</color>
     <color name="btn_facebook_focus">#3B5998</color>
     <color name="btn_facebook_press">#ff283a66</color>
     <color name="btn_twitter_focus">#4099FF</color>
     <color name="btn_twitter_press">#ff2b7fcd</color>
-    <color name="whitee">#ffffff</color>
+    <color name="white">#ffffff</color>
 
 </resources>
