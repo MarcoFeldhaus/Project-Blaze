@@ -181,8 +181,6 @@ public class LoginActivity extends Activity {
                         String errorMsg = jObj.getString("error_msg");
                         Toast.makeText(getApplicationContext(),
                                 errorMsg, Toast.LENGTH_LONG).show();
-                        inputEmail.setText("");
-                        inputPassword.setText("");
                     }
                 } catch (JSONException e) {
                     // JSON error
