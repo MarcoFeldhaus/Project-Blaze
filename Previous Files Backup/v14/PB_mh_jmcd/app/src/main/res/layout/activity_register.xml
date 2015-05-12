@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:padding="10dp" >
 
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -16,30 +17,43 @@
         android:paddingRight="20dp" >
         <ImageView
             android:id="@+id/imgIcon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:src="@drawable/ic_matappicon"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            />
+            android:focusable="false" />
+
         <TextView
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="@string/app_name"
-            android:textSize="30dp"
-            android:padding="5dp"
-            android:id="@+id/textView8"
+            android:text="@string/txt_username"
             android:textColor="@color/text_login_register"
-            android:layout_gravity="center"/>
+            android:textSize="20dp"
+            android:padding="10dp"
+
+            />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:textColor="@color/text_login_register"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            android:singleLine="true"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:text="@string/txt_email"
-            android:textSize="15dp"
-            android:padding="5dp"
+            android:textSize="20dp"
+            android:padding="10dp"
             android:id="@+id/textView7"
             android:textColor="@color/text_login_register"/>
 
@@ -49,21 +63,23 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
-            android:textColor="@color/text_login_register"
-            android:inputType="textEmailAddress"
-            android:padding="5dp"
-            android:singleLine="true"
 
-             />
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/text_login_register"
+            />
 
         <TextView
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="@string/txt_password"
-            android:textSize="15dp"
-            android:padding="5dp"
-            android:id="@+id/textView6"
-            android:textColor="@color/text_login_register"/>
+            android:textColor="@color/text_login_register"
+            android:textSize="20dp"
+            android:padding="10dp"
+            />
 
         <EditText
             android:id="@+id/password"
@@ -73,28 +89,34 @@
             android:background="@color/white"
             android:textColor="@color/text_login_register"
             android:inputType="textPassword"
-            android:padding="5dp"
+            android:padding="10dp"
             android:singleLine="true"
 
             />
 
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@drawable/loginregister_button"
-            android:text="@string/btn_login"
-            android:textColor="@color/white" />
 
 
         <Button
-            android:id="@+id/btnToRegister"
+            android:id="@+id/btnRegister"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
+            android:text="@string/btn_register"
+            android:textColor="@color/white"
             android:background="@drawable/loginregister_button"
-            android:text="@string/btn_to_register"
-            android:textColor="@color/white" />
+             />
+
+
+
+        <Button
+            android:id="@+id/btnToLogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="@string/btn_to_login"
+            android:textColor="@color/white"
+            android:background="@drawable/loginregister_button"
+             />
     </LinearLayout>
+
 </LinearLayout>

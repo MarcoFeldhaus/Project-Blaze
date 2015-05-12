@@ -101,8 +101,8 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
 
        //Settings Test, Move to Main HomeFragPage, context Error, changed to get Activity()
 
-       //TextView text1 = (TextView) getView().findViewById(R.id.text1);
-       //TextView text2 = (TextView) getView().findViewById(R.id.text2);
+       TextView text1 = (TextView) getView().findViewById(R.id.text1);
+       TextView text2 = (TextView) getView().findViewById(R.id.text2);
 
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SP.registerOnSharedPreferenceChangeListener(this);
@@ -127,8 +127,8 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
         String name = user.get("name");
         String email = user.get("email");
 
-        //text1.setText(name);
-        //text2.setText(email);
+        text1.setText(name);
+        text2.setText(email);
 
     }
     @Override
@@ -145,15 +145,15 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
         String updates = Boolean.toString(bAppUpdates);
 
         //long l = Long.parseLong(updateType);
-        //TextView text3 = (TextView) getView().findViewById(R.id.text3);
-        //TextView text4 = (TextView) getView().findViewById(R.id.text4);
-        //TextView text5 = (TextView) getView().findViewById(R.id.text5);
-        //TextView text6 = (TextView) getView().findViewById(R.id.text6);
+        TextView text3 = (TextView) getView().findViewById(R.id.text3);
+        TextView text4 = (TextView) getView().findViewById(R.id.text4);
+        TextView text5 = (TextView) getView().findViewById(R.id.text5);
+        TextView text6 = (TextView) getView().findViewById(R.id.text6);
 
-       //text3.setText(strUsername);
-       //text4.setText(updateType);
-       //text5.setText(mapType);
-       //text6.setText(updates);
+       text3.setText(strUsername);
+       text4.setText(updateType);
+       text5.setText(mapType);
+       text6.setText(updates);
 
     }
 
