@@ -20,8 +20,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -39,8 +40,8 @@ import com.mh_jmcdexample.pb_mh_jmcd.helper.SQLiteHandler;
 public class AboutFragActivity extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener{
 
 
-    private Button btnTwitter;
-    private Button btnFacebook;
+    private ImageView btnTwitter;
+    private ImageView btnFacebook;
     private Button btnAcknowledge;
 
     private SQLiteHandler db;
@@ -73,8 +74,8 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        btnTwitter = (Button) getView().findViewById(R.id.btn_twitter);
-        btnFacebook = (Button) getView().findViewById(R.id.btn_facebook);
+        btnTwitter = (ImageView) getView().findViewById(R.id.btn_twitter);
+        btnFacebook = (ImageView) getView().findViewById(R.id.btn_facebook);
         btnAcknowledge = (Button) getView().findViewById(R.id.btn_ack);
 
 

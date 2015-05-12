@@ -27,6 +27,32 @@
     <string name="txt_username">Username:</string>
     <string name="txt_email">Email Address:</string>
     <string name="txt_password">Password:</string>
+    <string name="txt_share">Share on</string>
+    <string name="txt_acknowledge1">Acknowledgment 1:\n\n
+        Name: Colorful Map Marker Set Vector\n
+        Author: Pluma319\n
+        Asset: Image\n
+        Usage: Free for commercial and personal use\n
+        Source: http://pluma319.deviantart.com/art/Map-Markers-455900567
+    </string>
+
+    <string name="txt_acknowledge2">Acknowledgment 2:\n\n
+        Name: Freebie:Flat Social Icon set\n
+        Author: Mohammed Alyousfi\n
+        Asset: Image\n
+        Usage: Free for commercial and personal use\n
+        Source: speckyboy.com/2013/09/16/freebie-flat-social-icon-set/
+    </string>
+
+    <string name="txt_acknowledge3">Acknowledgment 3:\n\n
+        Name: \n
+        Author: \n
+        Asset: Sound\n
+        Usage: Free for commercial and personal use\n
+        Source: http://pluma319.deviantart.com/art/Map-Markers-455900567
+    </string>
+
+
 
 
 

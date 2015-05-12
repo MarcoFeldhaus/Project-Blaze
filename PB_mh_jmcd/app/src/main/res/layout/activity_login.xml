@@ -18,7 +18,7 @@
             android:id="@+id/imgIcon"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/ic_appicon"
+            android:src="@drawable/ic_matappicon"
             android:layout_gravity="center"
 
 

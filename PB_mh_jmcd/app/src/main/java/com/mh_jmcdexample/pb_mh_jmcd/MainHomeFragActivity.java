@@ -211,7 +211,7 @@ public class MainHomeFragActivity extends ActionBarActivity
 
     public void logoutAlertdialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.ic_pblauncher);
+        builder.setIcon(R.mipmap.ic_matlauncher);
         builder.setTitle(R.string.logout_title);
         builder.setMessage(R.string.logout_message)
                 .setPositiveButton(R.string.logout_yes, new DialogInterface.OnClickListener() {
@@ -753,8 +753,8 @@ public class MainHomeFragActivity extends ActionBarActivity
             String name = user.get("name");
             String email = user.get("email");
 
-            new pindropupload().execute(name,u_lat, u_lng);
-            new pindropretrieve().execute(name);
+            new pindropupload().execute(name,email,u_lat, u_lng);
+            new pindropretrieve().execute(name,email);
         }
 
 
@@ -773,14 +773,20 @@ public class MainHomeFragActivity extends ActionBarActivity
             @Override
             protected String doInBackground(String... arg0) {
                 try {
+                    /*********************************************
+                     * To program the posting of variables to the server side php files to perform query, the Android PHP/MYSQL (CONNECTING VIA POST METHOD) Tutorial was followed
+                     * Tutorial Available at
+                     * http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/
+                     */
                     String name = (String) arg0[0];
-                    //String email = (String) arg0[1];
-                    String u_lat = (String) arg0[1];
-                    String u_lng = (String) arg0[2];
-                    //String link = "http://10.0.0.3/pindropUpload/index.php";
+                    String email = (String) arg0[1];
+                    String u_lat = (String) arg0[2];
+                    String u_lng = (String) arg0[3];
                     String link = "http://www.projectblaze.site88.net/pindropUpload/index.php";
                     String data = URLEncoder.encode("name", "UTF-8")
                             + "=" + URLEncoder.encode(name, "UTF-8");
+                    data += "&" + URLEncoder.encode("email", "UTF-8")
+                            + "=" + URLEncoder.encode(email, "UTF-8");
                     data += "&" + URLEncoder.encode("u_lat", "UTF-8")
                             + "=" + URLEncoder.encode(u_lat, "UTF-8");
                     data += "&" + URLEncoder.encode("u_lng", "UTF-8")
@@ -805,6 +811,12 @@ public class MainHomeFragActivity extends ActionBarActivity
                         break;
                     }
                     return sb.toString();
+
+                    /*********************************************
+                     * End of Android PHP/MYSQL (CONNECTING VIA POST METHOD) Tutorial
+                     * Tutorial Available at
+                     * http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/
+                     */
 
                 } catch (Exception e) {
                     return new String("Exception: " + e.getMessage());
@@ -832,44 +844,24 @@ public class MainHomeFragActivity extends ActionBarActivity
             }
 
             @Override
- /*           protected String doInBackground(String... params) {
-                //String HTTP_URL = "http://10.0.0.7/pindropDownload/index.php";
-                String HTTP_URL = "http://www.projectblaze.site88.net/pindropDownload/index.php";
-                URL url = null;
-                HttpURLConnection connect = null;
-                StringBuilder json = new StringBuilder();
-                try {
-                    url = new URL(HTTP_URL);
-                    connect = (HttpURLConnection) url.openConnection();
-                    InputStreamReader input = new InputStreamReader(connect.getInputStream());
-                    BufferedReader Reader = new BufferedReader(input);
 
-                    String Line = "";
-                    while ((Line = Reader.readLine()) != null) {
-                        json.append(Line);
-                    }
-                    Reader.close();
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                return json.toString();
-                //return null;
-            }
-*/
 
             protected String doInBackground(String... arg0) {
                 try {
-                    String name = (String) arg0[0];
 
-                    //String HTTP_URL = "http://www.projectblaze.site88.net/pindropDownload/index.php";
-                    //String link = "http://10.0.0.3/pindropUpload/index.php";
+                    /*********************************************
+                     * To program the posting of variables to the server side php files to perform query, the Android PHP/MYSQL (CONNECTING VIA POST METHOD) Tutorial was followed
+                     * Tutorial Available at
+                     * http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/
+                     */
+                    String name = (String) arg0[0];
+                    String email = (String) arg0[1];
+
                     String link = "http://www.projectblaze.site88.net/pindropDownload/index.php";
                     String data = URLEncoder.encode("name", "UTF-8")
                             + "=" + URLEncoder.encode(name, "UTF-8");
+                    data += "&" + URLEncoder.encode("email", "UTF-8")
+                            + "=" + URLEncoder.encode(email, "UTF-8");
 
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -889,6 +881,11 @@ public class MainHomeFragActivity extends ActionBarActivity
                         break;
                     }
                     return json.toString();
+                    /*********************************************
+                     * End of Android PHP/MYSQL (CONNECTING VIA POST METHOD) Tutorial
+                     * Tutorial Available at
+                     * http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/
+                     */
 
                 } catch (Exception e) {
                     return new String("Exception: " + e.getMessage());
@@ -899,6 +896,13 @@ public class MainHomeFragActivity extends ActionBarActivity
 
             protected void onPostExecute(String json) {
                 try {
+                    /*********************************************
+                     * To implement the pindrops from the web server from the returned json format, a user called Saxman provided a solution for this
+                     * Available at https://gist.github.com/saxman/5347195
+                     * https://gist.github.com/saxman/5347195
+                     */
+
+
                     JSONArray jsonArray = new JSONArray(json);
                     Log.d(TAG, "Json response :" + jsonArray);
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -907,12 +911,18 @@ public class MainHomeFragActivity extends ActionBarActivity
                         //Add markers from json
                         map.addMarker(new MarkerOptions()
                                 .title(jsonObj.getString("name"))
-                                .snippet(jsonObj.getString("u_lastUpdated"))
+                                .snippet("Last seen at: "+jsonObj.getString("u_lastUpdated"))
                                 .position(new LatLng(
                                         jsonObj.getJSONArray("latlng").getDouble(0),
                                         jsonObj.getJSONArray("latlng").getDouble(1)
                                 ))
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.vectorpindrop2)));
+
+                        /*********************************************
+                         * End of Saxman's Solution
+                         * Available at https://gist.github.com/saxman/5347195
+                         * https://gist.github.com/saxman/5347195
+                         */
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -23,6 +23,44 @@
             android:layout_gravity="center"
             android:focusable="false" />
 
+        <TextView
+            android:id="@+id/textAck1"
+            android:text="@string/txt_acknowledge1"
+            android:textSize="20px"
+
+
+            android:gravity="fill_horizontal"
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:id="@+id/textAck2"
+            android:text="@string/txt_acknowledge2"
+            android:textSize="20px"
+
+
+            android:gravity="fill_horizontal"
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:id="@+id/textAck3"
+            android:text="@string/txt_acknowledge3"
+            android:textSize="20px"
+
+
+            android:gravity="fill_horizontal"
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            />
 
 
         <Button

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/fragment_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_appicon"
+            android:layout_gravity="center"
+
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/txt_email"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:id="@+id/textView7"
+            android:textColor="@color/text_login_register"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:textColor="@color/text_login_register"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:singleLine="true"
+
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_password"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:id="@+id/textView6"
+            android:textColor="@color/text_login_register"/>
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:textColor="@color/text_login_register"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:singleLine="true"
+
+            />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/loginregister_button"
+            android:text="@string/btn_login"
+            android:textColor="@color/white" />
+
+
+        <Button
+            android:id="@+id/btnToRegister"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/loginregister_button"
+            android:text="@string/btn_to_register"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</LinearLayout>
