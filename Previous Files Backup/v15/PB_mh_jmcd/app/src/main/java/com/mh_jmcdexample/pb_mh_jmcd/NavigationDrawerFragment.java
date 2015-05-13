@@ -23,13 +23,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- *
- * To develop and use Navigation Drawers within this application, the follow code is based on the Navigation Activity
- * provided by Google (Navigation Activity Android Studio)
- *
- */
-/**
- * Created by Michael on 7/04/15.
+ * Fragment used for managing interactions for and presentation of a navigation drawer.
+ * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
+ * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
 public class NavigationDrawerFragment extends Fragment {
 
@@ -108,7 +104,7 @@ public class NavigationDrawerFragment extends Fragment {
                 new String[]{
                         getString(R.string.title_section1),
                         getString(R.string.title_section2),
-                        //getString(R.string.title_section3),
+                        getString(R.string.title_section3),
                         getString(R.string.title_section4),
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
@@ -149,14 +145,6 @@ public class NavigationDrawerFragment extends Fragment {
         //        R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
         //        R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
         //)
-
-
-/*********************************************
- * To remove the ic_drawer image and replace with home enabled actionbar the readjusted code was implemented by following
- * a Tutorial by Ben Jakuben
- * Tutorial Available at
- * http://blog.teamtreehouse.com/add-navigation-drawer-android
- */
         mDrawerToggle = new ActionBarDrawerToggle(
                 getActivity(),                    /* host Activity */
                         mDrawerLayout,                    /* DrawerLayout object */
@@ -164,12 +152,6 @@ public class NavigationDrawerFragment extends Fragment {
                         R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
                         R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
                 )
-/*********************************************
- *
- * Enf of Ben Jakuben's Tutorial code
- * Tutorial Available at
- * http://blog.teamtreehouse.com/add-navigation-drawer-android
- */
 
         {
             @Override
@@ -278,10 +260,10 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        //if (item.getItemId() == R.id.action_example) {
-        //    Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-        //    return true;
-        //}
+        if (item.getItemId() == R.id.action_example) {
+            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

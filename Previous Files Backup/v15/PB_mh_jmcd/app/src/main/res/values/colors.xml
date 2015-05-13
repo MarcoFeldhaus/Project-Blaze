@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="actionbar_background">#05A8F4</color>-->
+    <color name="actionbar_background">#209687</color>
+    <!--<color name="actionbar_background">#763fd0</color>-->
+    <color name="gradient_start">#50616161</color>
+    <color name="fragment_background">#ffefefef</color>
+
+
+
+
+
+    <color name="text_login_register">#209687</color>
+    <color name="btn_logreg_focus">#209687</color>
+    <color name="btn_logreg_press">#ff18665b</color>
+    <color name="btn_ack_focus">#209687</color>
+    <color name="btn_ack_press">#ff18665b</color>
+    <color name="btn_facebook_focus">#3B5998</color>
+    <color name="btn_facebook_press">#ff283a66</color>
+    <color name="btn_twitter_focus">#4099FF</color>
+    <color name="btn_twitter_press">#ff2b7fcd</color>
+    <color name="white">#ffffff</color>
+
+</resources>

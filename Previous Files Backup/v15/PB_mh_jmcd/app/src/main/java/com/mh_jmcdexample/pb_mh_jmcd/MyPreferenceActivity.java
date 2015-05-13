@@ -16,22 +16,14 @@ import android.widget.Toolbar;
 public class MyPreferenceActivity extends ActionBarActivity
 {
 
-    /*********************************************
-     * To program the Settings Preferences for this application the following Tutorial was followed
-     * Tutorial Available at
-     * http://codetheory.in/saving-user-settings-with-android-preferences/
-     */
+
     public class MyPreferenceFragment extends PreferenceFragment {
 
         @Override
         public void onCreate (final Bundle savedInstanceState)
         {
             super.onCreate(savedInstanceState);
-
-
-
             addPreferencesFromResource(R.xml.preferences);
-
 
             android.support.v7.app.ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -48,11 +40,11 @@ public class MyPreferenceActivity extends ActionBarActivity
                 .replace(android.R.id.content, new MyPreferenceFragment()).commit();
         //getSupportActionBar().setHomeButtonEnabled(true);
 
-    /*********************************************
-    * End of Settings Preference Tutorial
-    * Tutorial Available at
-    * http://codetheory.in/saving-user-settings-with-android-preferences/
-    */
+
+        //http://forums.udacity.com/questions/100257228/how-to-add-actionbar-in-preferenceactivity
+       // android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setHomeButtonEnabled(true);
     }
 
     /***************

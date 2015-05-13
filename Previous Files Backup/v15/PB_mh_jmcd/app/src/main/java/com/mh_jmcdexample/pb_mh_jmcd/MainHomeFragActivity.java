@@ -1,6 +1,5 @@
 package com.mh_jmcdexample.pb_mh_jmcd;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
-import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -61,9 +59,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
-/**
- * Created by Michael on 7/04/15.
- */
+
 public class MainHomeFragActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -141,13 +137,13 @@ public class MainHomeFragActivity extends ActionBarActivity
                         AboutFragActivity.newInstance(position + 1)).commit();
                 break;
 
-            //case 3:
-              //  fragmentManager.beginTransaction().replace(R.id.container,
-                        //SettingsFragActivity.newInstance(position + 1)).commit();
-                //break;
+            case 3:
+                fragmentManager.beginTransaction().replace(R.id.container,
+                        SettingsFragActivity.newInstance(position + 1)).commit();
+                break;
 //End of Chengwens Solution
 
-            case 3:
+            case 4:
                 logoutAlertdialog();
 
                 break;
@@ -164,10 +160,10 @@ public class MainHomeFragActivity extends ActionBarActivity
             case 2:
                 mTitle = getString(R.string.title_section2);
                 break;
-            //case 3:
-              //  mTitle = getString(R.string.title_section3);
-                //break;
             case 3:
+                mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
                 mTitle = getString(R.string.title_section4);
                 break;
         }
@@ -377,7 +373,6 @@ public class MainHomeFragActivity extends ActionBarActivity
         public void onResume() {
             super.onResume();
 
-            locationServicesCheck();
 
             if (map == null) {
                 map = fragment.getMap();
@@ -411,35 +406,12 @@ public class MainHomeFragActivity extends ActionBarActivity
                         startLocationUpdates();
                     }
 
-
                 }
             }
 
         }
 
-        public void locationServicesCheck(){
-            /*********************************************
-             * To allow the application to check whether location services are enabled, a user called Lenik provided this solution
-             * Tutorial Available at
-             * http://stackoverflow.com/questions/10311834/how-to-check-if-location-services-are-enabled
-             */
-            LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-            if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) && !locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Location Services");  // Location services not enabled
-                builder.setMessage("Location Services are not enabled. " +
-                        "To update your location and access Project Blaze, please turn on location services"); //Location services message
-                builder.setPositiveButton("Enable Location Services.", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        getActivity().startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                        // Launch settings activity to enable location services
-                    }
-                });
-                builder.setNegativeButton("Ignore", null);
-                builder.show();
-                return;
-            }
-        }
+        //check for Network Connection.PUT HERE
 
         @Override
         public void onAttach(Activity activity) {

@@ -5,13 +5,10 @@
     <PreferenceCategory
         android:key="category_user"
         android:title="User Settings">
-
-    <!--
     <EditTextPreference
         android:title="Account Username."
         android:key="username"
         android:summary="Please provide a new username."></EditTextPreference>
-        -->
     <ListPreference
         android:title="Update Intervals"
         android:summary="Select the update interval time for your location."
