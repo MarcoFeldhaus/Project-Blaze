@@ -74,7 +74,7 @@
 
 
         <activity
-            android:name="com.mh_jmcdexample.pb_mh_jmcd.MyPreferenceActivity"
+            android:name=".MyPreferenceActivity"
             android:label="@string/settings"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>

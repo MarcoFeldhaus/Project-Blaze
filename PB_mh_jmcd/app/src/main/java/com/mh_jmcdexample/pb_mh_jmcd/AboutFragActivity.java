@@ -37,8 +37,8 @@ import com.mh_jmcdexample.pb_mh_jmcd.helper.SQLiteHandler;
 
 
 
-public class AboutFragActivity extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener{
-
+//public class AboutFragActivity extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener{
+public class AboutFragActivity extends Fragment {
 
     private ImageView btnTwitter;
     private ImageView btnFacebook;
@@ -104,8 +104,8 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
        //TextView text1 = (TextView) getView().findViewById(R.id.text1);
        //TextView text2 = (TextView) getView().findViewById(R.id.text2);
 
-        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        SP.registerOnSharedPreferenceChangeListener(this);
+        //SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        //SP.registerOnSharedPreferenceChangeListener(this);
 
         updateWithPreference();
 
@@ -131,18 +131,18 @@ public class AboutFragActivity extends Fragment implements SharedPreferences.OnS
         //text2.setText(email);
 
     }
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        updateWithPreference();
-    }
+    //@Override
+    //public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        //updateWithPreference();
+    //}
 
     private void updateWithPreference() {
-        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String strUsername = SP.getString("username","NA");
-        String updateType = SP.getString("updateInterval", "60000");
-        String mapType = SP.getString("mapType", "1");
-        boolean bAppUpdates = SP.getBoolean("appSoundUpdates",false);
-        String updates = Boolean.toString(bAppUpdates);
+        //SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        //String strUsername = SP.getString("username","NA");
+        //String updateType = SP.getString("updateInterval", "60000");
+        //String mapType = SP.getString("mapType", "1");
+        //boolean bAppUpdates = SP.getBoolean("appSoundUpdates",false);
+        //String updates = Boolean.toString(bAppUpdates);
 
         //long l = Long.parseLong(updateType);
         //TextView text3 = (TextView) getView().findViewById(R.id.text3);

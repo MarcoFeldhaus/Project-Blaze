@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="settings"
+    android:summary="User Settings">
+    <PreferenceCategory
+        android:key="category_user"
+        android:title="User Settings">
+
+    <!--
+    <EditTextPreference
+        android:title="Account Username."
+        android:key="username"
+        android:summary="Please provide a new username."></EditTextPreference>
+        -->
+    <ListPreference
+        android:title="Update Intervals"
+        android:summary="Select the update interval time for your location."
+        android:key="updateInterval"
+        android:defaultValue="60000"
+        android:entries="@array/listArray"
+        android:entryValues="@array/listValues" />
+    <ListPreference
+        android:title="Map Type"
+        android:summary="Select the map type to display other users."
+        android:key="mapType"
+        android:defaultValue="1"
+        android:entries="@array/mapArray"
+        android:entryValues="@array/mapValues" />
+    <CheckBoxPreference
+        android:title="Sound"
+        android:defaultValue="false"
+        android:summary="If this option is selected, a sound will ping on your location update."
+        android:key="appSoundUpdates" />
+    </PreferenceCategory>
+</PreferenceScreen>

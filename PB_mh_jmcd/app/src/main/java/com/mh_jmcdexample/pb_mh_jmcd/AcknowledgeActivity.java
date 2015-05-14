@@ -2,7 +2,6 @@ package com.mh_jmcdexample.pb_mh_jmcd;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
@@ -15,7 +14,7 @@ public class AcknowledgeActivity extends ActionBarActivity {
         public void onCreate (final Bundle savedInstanceState)
         {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_acknowledge);
+            setContentView(R.layout.activity_legal);
 
             android.support.v7.app.ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);

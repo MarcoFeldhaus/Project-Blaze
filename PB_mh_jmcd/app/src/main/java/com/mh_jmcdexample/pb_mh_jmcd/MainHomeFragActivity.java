@@ -203,7 +203,7 @@ public class MainHomeFragActivity extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent i = new Intent(this, com.mh_jmcdexample.pb_mh_jmcd.MyPreferenceActivity.class);
+            Intent i = new Intent(this,MyPreferenceActivity.class);
             startActivity(i);
             //onBackPressed();
             return true;
@@ -320,7 +320,9 @@ public class MainHomeFragActivity extends ActionBarActivity
      * End of Google Update Location Code - Available at (Website) - Modified to fit App requirements
 
      */
-    private SQLiteHandler db;
+        private SQLiteHandler db;
+
+        private Activity mActivity;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -426,6 +428,7 @@ public class MainHomeFragActivity extends ActionBarActivity
             LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
             if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) && !locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setIcon(R.mipmap.ic_matlauncher);
                 builder.setTitle("Location Services");  // Location services not enabled
                 builder.setMessage("Location Services are not enabled. " +
                         "To update your location and access Project Blaze, please turn on location services"); //Location services message
@@ -446,6 +449,8 @@ public class MainHomeFragActivity extends ActionBarActivity
             super.onAttach(activity);
             ((MainHomeFragActivity) activity).onSectionAttached(getArguments().getInt(
                     ARG_SECTION_NUMBER));
+
+            mActivity = activity;
 
         }
 
@@ -520,11 +525,39 @@ public class MainHomeFragActivity extends ActionBarActivity
             pindropSound();
             createLocationRequest();
 
+            /*********************************************
+             * In order to fix a bug that was present in Shared Preferences which resulted in NullPointerException Errors causing the app to crash,
+             * a solution, provided by "I'm_With_Stupid" was provided.
+             * As this solution expands several areas of the application, a summary of the solution has been provided
+
+
+                     The best way to get rid of this is to keep an activity reference when onAttach is called and use the activity reference wherever needed, for e.g.
+
+                     @Override
+                     public void onAttach(Activity activity) {
+                     super.onAttach(activity);
+                     mActivity = activity;
+                     }
+                     Now at the top of your activity put:
+
+                     private Activity mActivity;
+
+                     And for every SharedPreference that is giving you a problem, replace "getActivity()" with "mActivity"
+
+
+             Available at
+             http://stackoverflow.com/questions/27614361/attempt-to-invoke-virtual-method-on-a-null-object-reference-for-sharedpreference
+             */
+
+
 
         }
 
         public void setUpMapPreference(){
-            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            //SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(mActivity);
+
+
 
             String mapType = SP.getString("mapType","1");
             //Log.d(TAG, "maptype" + SP.getString("mapType","1"));
@@ -559,17 +592,19 @@ public class MainHomeFragActivity extends ActionBarActivity
         }
 
         public void pindropSound(){
-            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            //SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(mActivity);
             boolean bAppUpdates = SP.getBoolean("appSoundUpdates",false);
-            String updates = Boolean.toString(bAppUpdates);
+            //String updates = Boolean.toString(bAppUpdates);
 
 
 
-            MediaPlayer mp = MediaPlayer.create(getActivity(),R.raw.echo_affirm);
+            //MediaPlayer mp = MediaPlayer.create(getActivity(),R.raw.echo_affirm);
+            MediaPlayer mp = MediaPlayer.create(mActivity,R.raw.echo_affirm);
             mp.setLooping(false);
             //mp.start();
 
-            if (updates.equals("true")){
+            if (bAppUpdates == true){
 
                 //MediaPlayer.create(getActivity(),R.raw.echo_affirm);
                 //mp.setLooping(false);
@@ -584,8 +619,8 @@ public class MainHomeFragActivity extends ActionBarActivity
 
         protected void createLocationRequest() {
 
-            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
+            //SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(mActivity);
             String updateType = SP.getString("updateInterval","60000");
 
             final long UPDATE_INTERVAL_IN_MILLISECONDS = Long.parseLong(updateType);
@@ -810,7 +845,9 @@ public class MainHomeFragActivity extends ActionBarActivity
                     String email = (String) arg0[1];
                     String u_lat = (String) arg0[2];
                     String u_lng = (String) arg0[3];
-                    String link = "http://www.projectblaze.site88.net/pindropUpload/index.php";
+                    //String link = "http://www.projectblaze.site88.net/pindropUpload/index.php";
+                    //String link = "http://10.0.0.6/pindropUpload/index.php";
+                    String link = "http://project-blaze.net/pindropUpload/index.php";
                     String data = URLEncoder.encode("name", "UTF-8")
                             + "=" + URLEncoder.encode(name, "UTF-8");
                     data += "&" + URLEncoder.encode("email", "UTF-8")
@@ -884,8 +921,10 @@ public class MainHomeFragActivity extends ActionBarActivity
                      */
                     String name = (String) arg0[0];
                     String email = (String) arg0[1];
-
-                    String link = "http://www.projectblaze.site88.net/pindropDownload/index.php";
+                    //
+                    //String link = "http://www.projectblaze.site88.net/pindropDownload/index.php";
+                    //String link = "http://10.0.0.6/pindropDownload/index.php";
+                    String link = "http://project-blaze.net/pindropDownload/index.php";
                     String data = URLEncoder.encode("name", "UTF-8")
                             + "=" + URLEncoder.encode(name, "UTF-8");
                     data += "&" + URLEncoder.encode("email", "UTF-8")

@@ -2,7 +2,7 @@
     <string name="app_name">Project Blaze</string>
 
     <string name="title_section1">Home</string>
-    <string name="title_section2">About Us</string>
+    <string name="title_section2">About</string>
     <!--
     <string name="title_section3">Settings</string>
     -->
@@ -65,7 +65,7 @@
 
 
 
-
+    <string name="txt_copyright">Copyright © 2015. Project Blaze</string>
     <string name="logout_title">Logout</string>
     <string name="logout_message">Are you sure you want to log out?</string>
     <string name="logout_yes">Yes</string>
