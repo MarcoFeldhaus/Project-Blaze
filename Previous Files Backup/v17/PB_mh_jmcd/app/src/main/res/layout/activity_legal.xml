@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/fragment_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_matappicon"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            />
+        <TextView
+            android:text="Project Blaze"
+            android:textSize="20dp"
+            android:id="@+id/textView1"
+            android:gravity="center_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_login_register"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/textAckH1"
+            android:text="@string/txt_acknowledgeH1"
+            android:textSize="14dp"
+            android:textColor="@color/text_login_register"
+            android:gravity="center_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+
+            />
+        <TextView
+            android:id="@+id/textAck1"
+            android:text="@string/txt_acknowledge1"
+            android:textSize="10dp"
+            android:gravity="center_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+
+            />
+
+        <TextView
+            android:id="@+id/textAckH2"
+            android:text="@string/txt_acknowledgeH2"
+            android:textSize="14dp"
+            android:textColor="@color/text_login_register"
+            android:gravity="center_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+
+            />
+        <TextView
+            android:id="@+id/textAck2"
+            android:text="@string/txt_acknowledge2"
+            android:textSize="10dp"
+            android:gravity="center_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+
+            />
+
+        <TextView
+            android:id="@+id/textAckH3"
+            android:text="@string/txt_acknowledgeH3"
+            android:textSize="14dp"
+            android:textColor="@color/text_login_register"
+            android:gravity="center_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+
+            />
+        <TextView
+            android:id="@+id/textAck3"
+            android:text="@string/txt_acknowledge3"
+            android:textSize="10dp"
+            android:gravity="center_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

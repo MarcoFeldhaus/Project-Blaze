@@ -67,15 +67,14 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:text="M.H"
+                android:text="Michael Horn"
                 android:textSize="10dp"
                 android:gravity="center_horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 />
 
-<!--
+
             <TextView
                 android:id="@+id/textView5"
                 android:text="Jordan McDonough"
@@ -85,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 />
--->
+
 
             <Button
                 android:id="@+id/btn_ack"
