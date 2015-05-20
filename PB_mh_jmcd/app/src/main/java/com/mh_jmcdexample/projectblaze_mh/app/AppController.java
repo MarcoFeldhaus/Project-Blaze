@@ -10,6 +10,10 @@ import com.android.volley.toolbox.Volley;
 /**
  * Created by Michael on 5/05/15.
  */
+/*********************************************
+ * To program this Login/Register System, the following code is based off the following Android Hive Tutorial Available at
+ * http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/
+ */
 public class AppController extends Application {
 
     public static final String TAG = AppController.class.getSimpleName();

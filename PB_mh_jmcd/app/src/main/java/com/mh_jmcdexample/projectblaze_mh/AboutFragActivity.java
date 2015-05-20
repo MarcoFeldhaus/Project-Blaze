@@ -168,13 +168,12 @@ public class AboutFragActivity extends Fragment {
 
         //String urlToShare = "http://stackoverflow.com/questions/7545254";
         //String urlToShare = "http://www.AppStoreAppLink.com";
-        String postShare = "Project Blaze - Hey Guys";
+        String postShare = "Project Blaze - Hey Guys, check out Project Blaze, a beta, free to use app to locate friends. Available on the Google Play Store";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        // intent.putExtra(Intent.EXTRA_SUBJECT, "Foo bar"); // NB: has no effect!
         intent.putExtra(Intent.EXTRA_TEXT, postShare);
 
-        // See if official Facebook app is found
+        // Search for Twitter App
         boolean twitterAppFound = false;
         List<ResolveInfo> matches = getActivity().getPackageManager().queryIntentActivities(intent, 0);
         for (ResolveInfo info : matches) {
@@ -185,13 +184,13 @@ public class AboutFragActivity extends Fragment {
             }
         }
 
-        // As fallback, launch sharer.php in a browser
+        // If Twitter App is not found, launch in Web Browser
         if (!twitterAppFound) {
 
 
             String tweetUrl =
                     String.format("https://twitter.com/intent/tweet?text=%s&url=%s",
-                            urlEncode("Project Blaze - Hey Guys"), urlEncode(""));
+                            urlEncode("Project Blaze - Hey Guys, check out Project Blaze, a beta, free to use app to locate friends. Available on the Google Play Store"), urlEncode(""));
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse(tweetUrl));
 
         }
@@ -204,14 +203,15 @@ public class AboutFragActivity extends Fragment {
         // This piece of code is to allow users to access Twitter to post tweets about our application with a default present text
         // This solution was from a user called Jonik at http://stackoverflow.com/questions/2077008/android-intent-for-twitter-application
 
-        //String urlToShare = "http://stackoverflow.com/questions/7545254";
-        String urlToShare = "http://www.AppStoreAppLink.com";
+
+        //String urlToShare = "http://www.AppStoreAppLink.com";
+        String urlToShare = "https://play.google.com/store/apps/details?id=com.mh_jmcdexample.projectblaze_mh";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        // intent.putExtra(Intent.EXTRA_SUBJECT, "Foo bar"); // NB: has no effect!
+        // intent.putExtra(Intent.EXTRA_SUBJECT, "Test");
         intent.putExtra(Intent.EXTRA_TEXT, urlToShare);
 
-        // See if official Facebook app is found
+        // Search for Facebook App
         boolean facebookAppFound = false;
         List<ResolveInfo> matches = getActivity().getPackageManager().queryIntentActivities(intent, 0);
         for (ResolveInfo info : matches) {
@@ -222,7 +222,7 @@ public class AboutFragActivity extends Fragment {
             }
         }
 
-        // As fallback, launch sharer.php in a browser
+        // If Facebook App is not found, launch in Web Browser
         if (!facebookAppFound) {
             String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));

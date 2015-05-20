@@ -38,7 +38,6 @@ import java.util.Map;
  */
 
 public class LoginActivity extends Activity {
-    // LogCat tag
     private static final String TAG = RegisterActivity.class.getSimpleName();
     private Button btnLogin;
     private Button btnLinkToRegister;

@@ -12,7 +12,14 @@ import android.util.Log;
  * Created by Michael on 5/05/15.
  */
 
-//THis classs maintains the session data across the app by using SharedPreferences to check the Boolean isloggedin status
+/*********************************************
+ * To program this Login/Register System, the following code is based off the following Android Hive Tutorial Available at
+ * http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/
+ */
+ /*
+    Session Manager monitors and controls the user session accross the whole application, by checking the Boolean statement
+    If Boolean == true, user is logged in
+  */
 public class SessionManager {
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();

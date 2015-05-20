@@ -3,6 +3,10 @@ package com.mh_jmcdexample.projectblaze_mh.app;
 /**
  * Created by Michael on 5/05/15.
  */
+/*********************************************
+ * To program this Login/Register System, the following code is based off the following Android Hive Tutorial Available at
+ * http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/
+ */
 public class AppConfig {
     // Server user login url
     //public static String URL_LOGIN = "http://10.0.0.3/android_login_api/";

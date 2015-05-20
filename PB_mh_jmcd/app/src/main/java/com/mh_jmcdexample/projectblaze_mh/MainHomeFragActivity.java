@@ -65,11 +65,9 @@ public class MainHomeFragActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
+     * Store the title of the last screen
      */
     private CharSequence mTitle;
-
-
 
     private SQLiteHandler db;
     private SessionManager session;
@@ -85,15 +83,15 @@ public class MainHomeFragActivity extends ActionBarActivity
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
-        // Set up the drawer.
+        // Set up the Navigation Drawer
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        // SqLite database handler
+        // SqLite Database Handler
         db = new SQLiteHandler(getApplicationContext());
 
-        // session manager
+        // Set up User Session Manager
         session = new SessionManager(getApplicationContext());
 
        // if (!session.isLoggedIn()) {
@@ -118,9 +116,9 @@ public class MainHomeFragActivity extends ActionBarActivity
         //      .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
         //    .commit();
 
-//Solution derived from Chengwens soluton to display other fragments from navigating from drawer
-//Available at
-//http://stackoverflow.com/questions/24006181/android-how-to-change-fragments-in-the-navigation-drawer
+        //Solution derived from Chengwen's solution to display other fragments from navigating from drawer
+        //Available at
+        //http://stackoverflow.com/questions/24006181/android-how-to-change-fragments-in-the-navigation-drawer
 
         switch (position + 1) {
             case 1:
@@ -137,7 +135,7 @@ public class MainHomeFragActivity extends ActionBarActivity
               //  fragmentManager.beginTransaction().replace(R.id.container,
                         //SettingsFragActivity.newInstance(position + 1)).commit();
                 //break;
-//End of Chengwens Solution
+        //End of Chengwen's Solution
 
             case 3:
                 logoutAlertdialog();
@@ -176,9 +174,8 @@ public class MainHomeFragActivity extends ActionBarActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
+            //If the navigation is not open, display Fragment title
+            //otherwise let the Navigation Drawer display relevant action bar features
             getMenuInflater().inflate(R.menu.main, menu);
             restoreActionBar();
             return true;
@@ -188,9 +185,8 @@ public class MainHomeFragActivity extends ActionBarActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        //Handles Home/Up Actionbar clicks
+        //Specify parent in manifest file
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -256,22 +252,22 @@ public class MainHomeFragActivity extends ActionBarActivity
         //private static final String HTTP_URL = "http://10.0.0.5/markerTest/index.php";
         //private static final String LOG_TAG = "Project Blaze Log Tag";
 
-    /*
-     * Start of Google Update Location Code - Available at (Website) - Modified to fit App requirements
+        /*
+         * Start of Google Update Location API Code -
+         * Available at http://developer.android.com/training/location/receive-location-updates.html
+         * and
+         * https://github.com/googlesamples/android-play-location/tree/master/LocationUpdates
+         * - Modified to fit App requirements
 
-     */
-
-
-        protected static final String TAG = "location-updates-sample";
-        /**
-         * The desired interval for location updates. Inexact. Updates may be more or less frequent.
          */
 
 
-
+        protected static final String TAG = "PB-LocationUpdate";
+        /**
+         * The desired interval for location updates. Inexact. Updates may be more or less frequent.
+         */
+        //Testing time
         //public static final long UPDATE_INTERVAL_IN_MILLISECONDS = 20000;
-
-
 
         /**
          * The fastest rate for active location updates. Exact. Updates will never be more frequent
@@ -282,34 +278,19 @@ public class MainHomeFragActivity extends ActionBarActivity
         protected final static String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";
         protected final static String LOCATION_KEY = "location-key";
         protected final static String LAST_UPDATED_TIME_STRING_KEY = "last-updated-time-string-key";
-        /**
-         * Provides the entry point to Google Play services.
-         */
+         //Provides access to Google Play Services
         protected GoogleApiClient mGoogleApiClient;
-        /**
-         * Stores parameters for requests to the FusedLocationProviderApi.
-         */
+         //Stores location parameter requests for the FusedLocationProviderApi.
         protected LocationRequest mLocationRequest;
-        /**
-         * Represents a geographical location.
-         */
+         //LatLng coordinates of the users Current Location
         protected Location mCurrentLocation;
-        /**
-         * Tracks the status of the location updates request. Value changes when the user presses the
-         * Start Updates and Stop Updates buttons.
-         */
+        //status tracker of user location peroidic update requests
         protected Boolean mRequestingLocationUpdates;
-
-        /**
-         * Time when the location was updated represented as a String.
-         */
+         //Time when the location was updated represented as a String.
         protected String mLastUpdateTime;
-        //private TextView status, role, method;
-
-
 
     /*
-     * End of Google Update Location Code - Available at (Website) - Modified to fit App requirements
+     * End of Google Update Location API Code - Modified to fit App requirements
 
      */
         private SQLiteHandler db;
@@ -349,12 +330,11 @@ public class MainHomeFragActivity extends ActionBarActivity
             // Update values using data stored in the Bundle.
             updateValuesFromBundle(savedInstanceState);
 
-            // Kick off the process of building a GoogleApiClient and requesting the LocationServices
-            // API.
+            //Build Google API Client to request LocationServices API
             buildGoogleApiClient();
 
 
-            // SqLite database handler
+            // SqLite User Database Handler
             db = new SQLiteHandler(getActivity());
             // Fetching user details from sqlite
             //HashMap<String, String> user = db.getUserDetails();
@@ -396,11 +376,8 @@ public class MainHomeFragActivity extends ActionBarActivity
 
                     setUpMapPreference();
 
-
-                    // Within {@code onPause()}, we pause location updates, but leave the
-                    // connection to GoogleApiClient intact.  Here, we resume receiving
-                    // location updates if the user has requested them.
-
+                    //User location updates are paused when the activity is out of screen, Google Api Client is not destroyed
+                    //When activity is active again, Google Api Client is resumed
                     if (mGoogleApiClient.isConnected() && mRequestingLocationUpdates) {
                         startLocationUpdates();
                     }
@@ -449,31 +426,27 @@ public class MainHomeFragActivity extends ActionBarActivity
 
 
 
-        /**
-         * Updates fields based on data stored in the bundle.
-         *
-         * @param savedInstanceState The activity state saved in the Bundle.
-         */
+
+         //Updates fields based on data stored in the bundle.
+
+
         private void updateValuesFromBundle(Bundle savedInstanceState) {
             Log.i(TAG, "Updating values from bundle");
             if (savedInstanceState != null) {
-                // Update the value of mRequestingLocationUpdates from the Bundle, and make sure that
-                // the Start Updates and Stop Updates buttons are correctly enabled or disabled.
+                // Update mRequestingLocationUpdates value from the Bundle
                 if (savedInstanceState.keySet().contains(REQUESTING_LOCATION_UPDATES_KEY)) {
                     mRequestingLocationUpdates = savedInstanceState.getBoolean(
                             REQUESTING_LOCATION_UPDATES_KEY);
-                    //setButtonsEnabledState();
                 }
 
-                // Update the value of mCurrentLocation from the Bundle and update the UI to show the
-                // correct latitude and longitude.
+                // Update mCurrentLocation to receive new latitude or longitude
                 if (savedInstanceState.keySet().contains(LOCATION_KEY)) {
                     // Since LOCATION_KEY was found in the Bundle, we can be sure that mCurrentLocation
                     // is not null.
                     mCurrentLocation = savedInstanceState.getParcelable(LOCATION_KEY);
                 }
 
-                // Update the value of mLastUpdateTime from the Bundle and update the UI.
+                // Update mLastUpdateTime from the Bundle to be kept for internal use in later applicatin updates.
                 if (savedInstanceState.keySet().contains(LAST_UPDATED_TIME_STRING_KEY)) {
                     mLastUpdateTime = savedInstanceState.getString(LAST_UPDATED_TIME_STRING_KEY);
                 }
@@ -481,10 +454,10 @@ public class MainHomeFragActivity extends ActionBarActivity
             }
         }
 
-        /**
-         * Builds a GoogleApiClient. Uses the {@code #addApi} method to request the
-         * LocationServices API.
-         */
+
+
+        // Builds Google Api Client to request the Location Services API
+
         protected synchronized void buildGoogleApiClient() {
             Log.i(TAG, "Building GoogleApiClient");
             mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
@@ -494,20 +467,6 @@ public class MainHomeFragActivity extends ActionBarActivity
                     .build();
             createLocationRequest();
         }
-
-        /**
-         * Sets up the location request. Android has two location request settings:
-         * {@code ACCESS_COARSE_LOCATION} and {@code ACCESS_FINE_LOCATION}. These settings control
-         * the accuracy of the current location. This sample uses ACCESS_FINE_LOCATION, as defined in
-         * the AndroidManifest.xml.
-         * <p/>
-         * When the ACCESS_FINE_LOCATION setting is specified, combined with a fast update
-         * interval (5 seconds), the Fused Location Provider API returns location updates that are
-         * accurate to within a few feet.
-         * <p/>
-         * These settings are appropriate for mapping applications that show real-time location
-         * updates.
-         */
 
 
         @Override
@@ -621,46 +580,23 @@ public class MainHomeFragActivity extends ActionBarActivity
 
             final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS;
 
-
-
-
             mLocationRequest = new LocationRequest();
-
-            // Sets the desired interval for active location updates. This interval is
-            // inexact. You may not receive updates at all if no location sources are available, or
-            // you may receive them slower than requested. You may also receive updates faster than
-            // requested if other applications are requesting location at a faster interval.
+            // Sets location update intervals
+            //If not update interval is selected, the default interval will be used from Shared Preferences
+            // Default value 60000 milliseconds, 1 minute
             mLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
-
-            // Sets the fastest rate for active location updates. This interval is exact, and your
-            // application will never receive updates faster than this value.
+            //Ability to set a faster update interval time
+            //This feature kept in code,
+            //To make use of it in future application updates
             mLocationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
 
             mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         }
 
-        /**
-         * Requests location updates from the FusedLocationApi.
-         */
+        //Request the Fused Location API from Google Play Services
         protected void startLocationUpdates() {
-            // The final argument to {@code requestLocationUpdates()} is a LocationListener
-            // (http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html).
             LocationServices.FusedLocationApi.requestLocationUpdates(
                     mGoogleApiClient, mLocationRequest, this);
-        }
-
-
-        /**
-         * Removes location updates from the FusedLocationApi.
-         */
-        protected void stopLocationUpdates() {
-            // It is a good practice to remove location requests when the activity is in a paused or
-            // stopped state. Doing so helps battery performance and is especially
-            // recommended in applications that request frequent location updates.
-
-            // The final argument to {@code requestLocationUpdates()} is a LocationListener
-            // (http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html).
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
 
         @Override
@@ -673,7 +609,8 @@ public class MainHomeFragActivity extends ActionBarActivity
         @Override
         public void onPause() {
             super.onPause();
-            // Stop location updates to save battery, but don't disconnect the GoogleApiClient object.
+            //Stops User Location Updates
+            // Does not end Google Location API
             if (mGoogleApiClient.isConnected()) {
                 stopLocationUpdates();
             }
@@ -685,55 +622,46 @@ public class MainHomeFragActivity extends ActionBarActivity
             mGoogleApiClient.disconnect();
         }
 
+        //Removes location updates from the FusedLocationApi.
+        protected void stopLocationUpdates() {
+            //Remove FusedLocationAPI
+            //Increased Battery performance esspecially for applications that make real-time updates
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+        }
+
         /**
          * Runs when a GoogleApiClient object successfully connects.
          */
         @Override
         public void onConnected(Bundle connectionHint) {
             Log.i(TAG, "Connected to GoogleApiClient");
-
-            // If the initial location was never previously requested, we use
-            // FusedLocationApi.getLastLocation() to get it. If it was previously requested, we store
-            // its value in the Bundle and check for it in onCreate(). We
-            // do not request it again unless the user specifically requests location updates by pressing
-            // the Start Updates button.
-            //
-            // Because we cache the value of the initial location in the Bundle, it means that if the
-            // user launches the activity,
-            // moves to a new location, and then changes the device orientation, the original location
-            // is displayed as the activity is re-created.
+            /*
+            If the current location can not be retrieved, we request the last known location,
+            from the Fused Location API if it was stored in the Bundle.
+            This is only really useful if the device orientation has changed
+            As we dont display our own User tracking on the Google Map, this if statement has limited functionality
+             */
             if (mCurrentLocation == null) {
                 mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                 mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
                 //Toast.makeText(getActivity(), "Unable to retrieve current location", Toast.LENGTH_SHORT).show();
-
-
             }
-
-            // If the user presses the Start Updates button before GoogleApiClient connects, we set
-            // mRequestingLocationUpdates to true (see startUpdatesButtonHandler()). Here, we check
-            // the value of mRequestingLocationUpdates and if it is true, we start location updates.
+            /*
+            If the user accesses the Home activity (This) before the Google API Client is connected
+            the mRequestingLocationUpdates is set to true
+            If true is selected, User Location Updates begin
+             */
             if (mRequestingLocationUpdates) {
                 startLocationUpdates();
             }
         }
 
-
-        /**
-         * Callback that fires when the location changes.
-         */
         @Override
         public void onLocationChanged(Location location) {
             mCurrentLocation = location;
             mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
-
             //Toast.makeText(getActivity(), "Location update", Toast.LENGTH_SHORT).show();
-
-
-
             //new pindropretrieve().execute();
-
-
             mapClear();
             pindropExecute();
 
@@ -745,60 +673,36 @@ public class MainHomeFragActivity extends ActionBarActivity
             }
         }
 
-
         @Override
         public void onConnectionSuspended(int cause) {
-            // The connection to Google Play services was lost for some reason. We call connect() to
-            // attempt to re-establish the connection.
-            Log.i(TAG, "Connection suspended");
+            //If Google API Client connection is lost
+            // Relaunch connection to Google API Client
+            Log.i(TAG, "Connection suspended/lost");
 
             mGoogleApiClient.connect();
         }
 
         @Override
         public void onConnectionFailed(ConnectionResult result) {
-            // Refer to the javadoc for ConnectionResult to see what error codes might be returned in
-            // onConnectionFailed.
-            Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
-
+            Log.i(TAG, "Connection failed: ErrorCode = " + result.getErrorCode());
         }
 
-
-        /**
-         * Stores activity data in the Bundle.
-         */
+        //Bundle storing Activity Data
         public void onSaveInstanceState(Bundle savedInstanceState) {
             savedInstanceState.putBoolean(REQUESTING_LOCATION_UPDATES_KEY, mRequestingLocationUpdates);
             savedInstanceState.putParcelable(LOCATION_KEY, mCurrentLocation);
             savedInstanceState.putString(LAST_UPDATED_TIME_STRING_KEY, mLastUpdateTime);
             super.onSaveInstanceState(savedInstanceState);
         }
+        /*
+         End of Google Update Location API Code - Modified to fit App requirements
 
-        /**
-         * Copyright 2014 Google Inc. All Rights Reserved.
-         *
-         * Licensed under the Apache License, Version 2.0 (the "License");
-         * you may not use this file except in compliance with the License.
-         * You may obtain a copy of the License at
-         *
-         * http://www.apache.org/licenses/LICENSE-2.0
-         *
-         * Unless required by applicable law or agreed to in writing, software
-         * distributed under the License is distributed on an "AS IS" BASIS,
-         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-         * See the License for the specific language governing permissions and
-         * limitations under the License.
-         */
-
-
-
+        */
 
         public void pindropExecute() {
 
             double latField = mCurrentLocation.getLatitude();
             double lngField = mCurrentLocation.getLongitude();
-
-
 
             String u_lat = Float.toString((float) latField);
             String u_lng = Float.toString((float) lngField);
@@ -811,11 +715,6 @@ public class MainHomeFragActivity extends ActionBarActivity
             new pindropupload().execute(name,email,u_lat, u_lng);
             new pindropretrieve().execute(name,email);
         }
-
-
-
-
-
 
 
         private class pindropupload extends AsyncTask<String, Void, String> {

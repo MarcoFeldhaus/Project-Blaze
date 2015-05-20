@@ -13,8 +13,9 @@ import android.util.Log;
 
 import java.util.HashMap;
 
-/**
- * Created by Michael on 5/05/15.
+/*********************************************
+ * To program this Login/Register System, the following code is based off the following Android Hive Tutorial Available at
+ * http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/
  */
 
 //Stores user data so a connection does not need to be made to the server to retrieve user data
